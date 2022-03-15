@@ -1,0 +1,8 @@
+python-dateutil         # Apache Software License, BSD License (Dual License)
+pyparsing               # MIT License
+requests                # Apache Software License (Apache 2.0)
+gitchangelog            # BSD License (BSD 3-Clause License)
+twine                   # Apache Software License
+click                   # BSD License (BSD-3-Clause)
+tqdm
+prettytable
