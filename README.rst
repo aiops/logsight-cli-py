@@ -140,6 +140,8 @@ The following list provides examples of useful commands:
 Comparing Logs
 ==============
 
+.. code-block:: console
+
     $ python -m cli.ls-cli application create --name apache_srv2
     $ # copy the <app_id> returned to next command
     $ export LOGSIGHT_APP_ID=<app_id>
