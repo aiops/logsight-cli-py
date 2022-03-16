@@ -25,6 +25,8 @@ README
     :alt: logsight.ai on Twitter
 
 
+Scope
+-----
 
 How To Make Quality Gates in CI/CD with GitHub
     + https://cerberus-testing.medium.com/how-to-make-quality-gates-in-ci-cd-with-github-a373d8a443b8
@@ -48,24 +50,24 @@ Commands available include:
     + Detect incidents in logs
 
 
-INSTALLATION
-============
+Installation
+------------
 The CLI can can installed using pip from PyPI.
 It has been tested with Mac and Linux operating systems.
 
-PREREQUISITE
+Prerequisite
 ============
 You have a Logsight account with `EMAIL` and `PASSWORD`.
 
-CONFIGURING THE LOGSIGHT COMMAND LINE INTERFACE
-================================================
+Configuring Logsight CLI
+========================
 There are several methods you can use to configure the settings that the Logsight CLI uses when interacting with Logsight.ai service,
 i.e. Logsight URL and account API keys. Account API keys can be created in API.
 
 There is a specific load order for what will be used.
 
-USING LOGSIGHT CONFIG
-*********************
+Using Logsight Config
+======================
 You can create a `.logsight` config file to set up your configuration with Logsight server.
 The file should be placed in your home directory.
 
@@ -81,8 +83,8 @@ Setting the variable APP_ID is optional.
 It can be set if you frequently use the same application and want to avoid passing the Id as a parameter for each command invoked.
 
 
-USING ENVIRONMENT VARIABLES
-***************************
+Using Environment Variables
+===========================
 You can also set the variables using your environment, `LOGSIGHT_EMAIL`, `LOGSIGHT_PASSWORD` and `LOGSIGHT_APP_ID`.
 Environment variables take precedence over config variables.
 
@@ -93,8 +95,8 @@ Environment variables take precedence over config variables.
     $ export LOGSIGHT_APP_ID=07402355-e74e-4115-b21d-4cbf453490d1
 
 
-PASSING OPTIONS
-********************
+Passing Options
+===============
 If you choose not to use the logsight config file or set environment variables,
 you can pass the same values as options as part of any logsight command.
 
@@ -111,8 +113,11 @@ you can pass the same values as options as part of any logsight command.
     +--------------------------------------+------------------+
 
 
-EXAMPLES OF COMMAND
-********************
+Examples
+--------
+
+Single Commands
+===============
 The following list provides examples of useful commands:
 
 .. code-block:: console
@@ -132,8 +137,8 @@ The following list provides examples of useful commands:
     $ [Under development] python -m cli.ls-cli quality log --app_id <applicationId> --tags <tag_v1>
 
 
-EXAMPLES OF SCENARIO
-********************
+Comparing Logs
+==============
 
     $ python -m cli.ls-cli application create --name apache_srv2
     $ # copy the <app_id> returned to next command
@@ -145,8 +150,8 @@ EXAMPLES OF SCENARIO
 
 
 
-AVAILABILITY
-********************
+Availability
+------------
 
 The Logsight CLI Python package is deployed to the following external platforms:
 
