@@ -55,7 +55,7 @@ def config(ctx):
     """
     u = ctx.obj['USER']
     a = ctx.obj['APP_ID']
-    click.echo(f"EMAIL: {u.email}, PASSWD: {u.password}, APP_ID: {a}")
+    click.echo(f"EMAIL: {u.email}, PASSWORD: {u.password}, APP_ID: {a}")
 
 
 cli.add_command(application.apps)
