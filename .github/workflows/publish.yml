@@ -37,7 +37,7 @@ jobs:
         run: python setup.py sdist
 
       - name: Publish distribution 📦 to Test PyPI
-        uses: pypa/gh-action-pypi-publish@master
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: __token__
           password: ${{ secrets.LOGSIGHT_SDK_TEST_PYPI_TOKEN }}
@@ -47,7 +47,7 @@ jobs:
         run: echo "Hello tag ${{ github.ref }}"
 
       - name: Publish distribution 📦 to PyPI
-        uses: pypa/gh-action-pypi-publish@master
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: __token__
           password: ${{ secrets.LOGSIGHT_SDK_PYPI_TOKEN }}
