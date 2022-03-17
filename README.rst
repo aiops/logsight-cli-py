@@ -55,6 +55,11 @@ Installation
 The CLI can can installed using pip from PyPI.
 It has been tested with Mac and Linux operating systems.
 
+.. code-block:: console
+
+    $ pip install logsight-cli-py
+
+
 Prerequisite
 ============
 You have a Logsight account with `EMAIL` and `PASSWORD`.
