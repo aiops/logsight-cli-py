@@ -40,7 +40,7 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: __token__
-          password: ${{ secrets.LOGSIGHT_SDK_TEST_PYPI_TOKEN }}
+          password: ${{ secrets.LOGSIGHT_CLI_TEST_PYPI_TOKEN }}
           repository_url: https://test.pypi.org/legacy/
 
       - name: Debug
@@ -50,4 +50,4 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: __token__
-          password: ${{ secrets.LOGSIGHT_SDK_PYPI_TOKEN }}
+          password: ${{ secrets.LOGSIGHT_CLI_PYPI_TOKEN }}
