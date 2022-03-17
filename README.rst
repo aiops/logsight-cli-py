@@ -103,14 +103,6 @@ you can pass the same values as options as part of any logsight command.
 .. code-block:: console
 
     $ python -m cli.ls-cli --email john.miller@zmail.com --password sawhUz-hanpe4-zaqtyr applications ls
-    +--------------------------------------+------------------+
-    |            APPLICATION Id            |       NAME       |
-    +--------------------------------------+------------------+
-    | 84c2ca94-e39c-498f-ad0d-0263434c71ac |    hdfs_node     |
-    | 8b6cd73b-299b-4f2b-8334-3b820434a23a |   node_manager   |
-    | 208d3b6d-15b7-402d-b53a-4c32c2eff623 | resource_manager |
-    | 7a858f4f-33f7-4bba-ac5e-bd5fec0bd9a2 |    name_node     |
-    +--------------------------------------+------------------+
 
 
 Examples
@@ -123,18 +115,28 @@ The following list provides examples of useful commands:
 .. code-block:: console
 
     $ python -m cli.ls-cli config
+    EMAIL: john.miller@zmail.com, PASSWD: sawhUz-hanpe4-zaqtyr, APP_ID: 07402355-e74e-4115-b21d-4cbf453490d1
 
     $ python -m cli.ls-cli application ls
-    $ python -m cli.ls-cli application create --name apache_srv
-    $ python -m cli.ls-cli application delete --app_id <applicationId>
+    +--------------------------------------+------------------+
+    |            APPLICATION Id            |       NAME       |
+    +--------------------------------------+------------------+
+    | 84c2ca94-e39c-498f-ad0d-0263434c71ac |    hdfs_node     |
+    | 8b6cd73b-299b-4f2b-8334-3b820434a23a |   node_manager   |
+    | 208d3b6d-15b7-402d-b53a-4c32c2eff623 | resource_manager |
+    | 7a858f4f-33f7-4bba-ac5e-bd5fec0bd9a2 |    name_node     |
+    +--------------------------------------+------------------+
 
-    $ python -m cli.ls-cli log upload <file> --tag v1 --app_id <applicationId>
-    $ python -m cli.ls-cli log tag ls --app_id <applicationId>
-    $ [Under development] python -m cli.ls-cli log status --flush_id --app_id <applicationId>
+    $ python -m cli.ls-cli application create --name <app name>
+    $ python -m cli.ls-cli application delete --app_id <app id>
 
-    $ python -m cli.ls-cli compare log --app_id <applicationId> --tags <tag_v1> <tag_v2> --flush_id <flushId>
-    $ python -m cli.ls-cli incident log --app_id <applicationId> --tags <tag_v1>
-    $ [Under development] python -m cli.ls-cli quality log --app_id <applicationId> --tags <tag_v1>
+    $ python -m cli.ls-cli log upload <file> --tag v1 --app_id <app id>
+    $ python -m cli.ls-cli log tag ls --app_id <app id>
+    $ [Under development] python -m cli.ls-cli log status --flush_id --app_id <app id>
+
+    $ python -m cli.ls-cli compare log --app_id <app id> --tags <tag v1> <tag v2> --flush_id <flush id>
+    $ python -m cli.ls-cli incident log --app_id <app id> --tags <tag v1>
+    $ [Under development] python -m cli.ls-cli quality log --app_id <app id> --tags <tag v1>
 
 
 Comparing Logs
