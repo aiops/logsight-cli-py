@@ -94,6 +94,14 @@ Environment variables take precedence over config variables.
     $ export LOGSIGHT_PASSWORD=sawhUz-hanpe4-zaqtyr
     $ export LOGSIGHT_APP_ID=07402355-e74e-4115-b21d-4cbf453490d1
 
+Alternatively, to set the required environment variables for the Logsight command-line client,
+you can create an environment file called an Logsight rc file, or logsightrc.sh file.
+You can update and, afterwards, source the following file:
+
+.. code-block:: console
+
+    source bin/logsightrc.sh
+
 
 Passing Options
 ===============
