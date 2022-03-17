@@ -1,4 +1,5 @@
 import click
+import json
 from prettytable import PrettyTable
 
 from logsight.application import LogsightApplication
@@ -26,10 +27,14 @@ def ls(ctx):
     try:
 
         app_mng = LogsightApplication(u.user_id, u.token)
-        table = PrettyTable(['APPLICATION ID', 'NAME'])
-        for a in app_mng.lst()['applications']:
-            table.add_row([a['applicationId'], a['name']])
-        click.echo(table)
+
+        if ctx.obj['JSON']:
+            click.echo(json.dumps(app_mng.lst(), sort_keys=True, indent=4))
+        else:
+            table = PrettyTable(['APPLICATION ID', 'NAME'])
+            for a in app_mng.lst()['applications']:
+                table.add_row([a['applicationId'], a['name']])
+            click.echo(table)
 
     except APIException as e:
         click.echo(f'Unable to retrieve application list ({e})')
@@ -53,7 +58,11 @@ def create(ctx, name):
 
         app_mng = LogsightApplication(u.user_id, u.token)
         r = app_mng.create(name)
-        click.echo(f"app_id: {r['applicationId']}")
+
+        if ctx.obj['JSON']:
+            click.echo(json.dumps(r, sort_keys=True, indent=4))
+        else:
+            click.echo(f"app_id: {r['applicationId']}")
 
     except APIException as e:
         click.echo(f'Unable to create application name: {name} ({e})')

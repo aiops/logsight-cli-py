@@ -3,6 +3,7 @@ import json
 import time
 import click
 from tqdm import tqdm
+from prettytable import PrettyTable
 
 from logsight.compare import LogsightCompare
 from logsight.exceptions import Conflict, BadRequest
@@ -46,10 +47,16 @@ def log(ctx, app_id, tags, flush_id):
                              flush_id=flush_id,
                              verbose=ctx.obj['DEBUG'])
 
-            s = json.dumps(r, sort_keys=True, indent=4)
-            click.echo(s)
-            exit(0)
+            if ctx.obj['JSON']:
+                s = json.dumps(r, sort_keys=True, indent=4)
+                click.echo(s)
+            else:
+                table = PrettyTable(['KEY', 'VALUE'])
+                for key, value in r.items():
+                    table.add_row([key, value])
+                click.echo(table)
 
+            exit(0)
             break
         except Conflict:
             time.sleep(10)

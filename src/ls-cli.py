@@ -31,8 +31,9 @@ VERSION = '2022.03.14'
 @click.option('--debug/--no-debug', default=False)
 @click.option('--email', default=CONFIG['EMAIL'], help='email of logsight user.')
 @click.option('--password', default=CONFIG['PASSWORD'], help='password of logsight user.')
+@click.option('--json', default=False, is_flag=True, help='output returned as a json structure.')
 @click.option('--app_id', default=CONFIG['APP_ID'], help='app_id to use as default.')
-def cli(ctx, debug, email, password, app_id):
+def cli(ctx, debug, json, email, password, app_id):
     if not email or not password:
         click.echo(f"Authentication incomplete: EMAIL {'found' if email else 'not found'}, "
                    f"PASSWORD {'found' if email else 'not found'}.")
@@ -41,10 +42,11 @@ def cli(ctx, debug, email, password, app_id):
     ctx.obj['USER'] = LogsightUser(email=email, password=password)
     ctx.obj['APP_ID'] = app_id
     ctx.obj['DEBUG'] = debug
+    ctx.obj['JSON'] = json
 
     if debug:
         click.echo(f"Config file found? {'yes' if Path(CONFIG_FILE).is_file() else 'no'}")
-        click.echo(f"EMAIL: {email}, PASSWD: {password}")
+        click.echo(f"EMAIL: {email}, PASSWORD: {password}")
 
 
 @cli.command()

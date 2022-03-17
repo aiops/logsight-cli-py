@@ -1,4 +1,5 @@
 import click
+import json
 from prettytable import PrettyTable
 
 from logsight.logs import LogsightLogs
@@ -29,16 +30,20 @@ def upload(ctx, file, tag, app_id):
     u = ctx.obj['USER']
     a = app_id or ctx.obj['APP_ID']
 
-    flush_id = None
     try:
         logs = LogsightLogs(u.token)
         r = logs.upload(a, file, tag=tag)
-        flush_id = logs.flush(r['receiptId'])['flushId']
+        flush_id = logs.flush(r['receiptId'])
+
+        if ctx.obj['JSON']:
+            click.echo(json.dumps(flush_id, sort_keys=True, indent=4))
+        else:
+            click.echo(f'flush_id: {flush_id["flushId"]}')
+
     except APIException as e:
         click.echo(f'Unable to upload log file to application ({e})')
         exit(1)
 
-    click.echo(f'flush_id: {flush_id}')
     exit(0)
 
 
@@ -63,10 +68,14 @@ def ls(ctx, app_id):
     try:
 
         cmp_mng = LogsightCompare(u.user_id, u.token)
-        table = PrettyTable(['Tag', 'View'])
-        for i in cmp_mng.tags(a):
-            table.add_row([i['tag'], i['tagView']])
-        click.echo(table)
+
+        if ctx.obj['JSON']:
+            click.echo(json.dumps(cmp_mng.tags(a), sort_keys=True, indent=4))
+        else:
+            table = PrettyTable(['Tag', 'View'])
+            for i in cmp_mng.tags(a):
+                table.add_row([i['tag'], i['tagView']])
+            click.echo(table)
 
     except APIException as e:
         click.echo(f'Unable to retrieve tags ({e})')
