@@ -4,11 +4,10 @@ import time
 import datetime
 import click
 from tqdm import tqdm
+from prettytable import PrettyTable
 
-from logsight.application import LogsightApplication
-from logsight.logs import LogsightLogs
 from logsight.incidents import LogsightIncident
-from logsight.exceptions import APIException, Conflict
+from logsight.exceptions import Conflict
 
 N_CALL_RETRIES = 10
 
@@ -31,13 +30,18 @@ def log(ctx, app_id, tag, flush_id):
 
     python -m cli.ls-cli incident log --app_id <applicationId> --tag <tag_v1>
     """
+
+    # todo(jcardoso): Tag is not being used. Currently using now() - 1 day
+    #   it should be possible to use tags which are resolved to timestamps
+    click.echo('Tag option is not being used. a default 365d window in being applied')
+
     u = ctx.obj['USER']
     a = app_id or ctx.obj['APP_ID']
 
     i = LogsightIncident(u.user_id, u.token)
     now = datetime.datetime.utcnow()
     stop_time = now.isoformat()
-    start_time = (now - datetime.timedelta(days=1)).isoformat()
+    start_time = (now - datetime.timedelta(days=365)).isoformat()
 
     for _ in (td := tqdm(range(1, N_CALL_RETRIES + 1),
                          desc='Call retries',
@@ -52,8 +56,15 @@ def log(ctx, app_id, tag, flush_id):
                             flush_id=flush_id,
                             verbose=ctx.obj['DEBUG'])
 
-            s = json.dumps(r, sort_keys=True, indent=4)
-            click.echo(s)
+            if ctx.obj['JSON']:
+                s = json.dumps(r, sort_keys=True, indent=4)
+                click.echo(s)
+            else:
+                table = PrettyTable(['KEY', 'VALUE'])
+                for key, value in r.items():
+                    table.add_row([key, value])
+                click.echo(table)
+
             exit(0)
         except Conflict:
             time.sleep(10)

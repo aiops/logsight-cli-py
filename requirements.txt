@@ -1,4 +1,4 @@
-logsight-sdk-py         # BSD License (BSD (3 clause))
+# logsight-sdk-py         # BSD License (BSD (3 clause))
 click                   # BSD License (BSD-3-Clause)
 prettytable             # BSD License (BSD (3 clause))
 tqdm                    # MIT License

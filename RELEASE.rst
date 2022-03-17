@@ -218,10 +218,9 @@ Bash workflow
 
 .. code-block:: console
 
-    #. Update develop branch in case someone made changes
+    #. Update your local develop branch in case someone made changes to the remote develop branch
     git checkout develop
     git pull --rebase
-    git push
 
     #. Created a new release id
     prev_version=$(python setup.py --version)
@@ -240,10 +239,10 @@ Bash workflow
     # Update the changelog
     # add commit message from HEAD to the previous tag
     # echo -e "$(git log --pretty='- %s' $prev_version..HEAD)\n\n$(cat CHANGELOG.rst)" > CHANGELOG.rst
-    # Run gitchangelog to manually add changelog entries
+    # Run gitchangelog to manually add changelog entries (the following command fails if it is the first release)
     gitchangelog ^$prev_version HEAD
 
-    # Update the version in setup.py
+    # Update automatically or manually the version in setup.py
     # $ vi setup.py or
     sed -i "/^version/s;[^ ]*$;'$version';" setup.py
     # BSD/MacOS: sed -i "" "/^version/s;[^ ]*$;'$version';" setup.py
@@ -254,6 +253,7 @@ Bash workflow
     # - https://www.sphinx-doc.org/_/downloads/en/master/pdf/
     cd docs ; make clean ; make html ; cd ..
 
+    # Warning: The following command should be executed manually
     # Execute tests
     # tox
 
@@ -261,14 +261,17 @@ Bash workflow
 
     #. Update main branch
     git checkout main
+    git pull
     git merge --no-ff release/$version -m "Release $version"
-    git push origin main
     git tag -a $version -m "Release $version"
     git push --tags
 
     #. Update develop branch
     git checkout develop
+    git pull
     git merge --no-ff release/$version -m "Release $version"
+    # This step may well lead to a merge conflict (probably even, since we have changed the version number).
+    # If so, fix it and commit.
     git push origin develop
 
     #. Remove release branch
