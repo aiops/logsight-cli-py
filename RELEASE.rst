@@ -218,10 +218,9 @@ Bash workflow
 
 .. code-block:: console
 
-    #. Update develop branch in case someone made changes
+    #. Update your local develop branch in case someone made changes to the remote develop branch
     git checkout develop
     git pull --rebase
-    git push
 
     #. Created a new release id
     prev_version=$(python setup.py --version)
@@ -254,6 +253,7 @@ Bash workflow
     # - https://www.sphinx-doc.org/_/downloads/en/master/pdf/
     cd docs ; make clean ; make html ; cd ..
 
+    # Warning: The following command should be executed manually
     # Execute tests
     # tox
 
@@ -261,14 +261,17 @@ Bash workflow
 
     #. Update main branch
     git checkout main
+    git pull
     git merge --no-ff release/$version -m "Release $version"
-    git push origin main
     git tag -a $version -m "Release $version"
     git push --tags
 
     #. Update develop branch
     git checkout develop
+    git pull
     git merge --no-ff release/$version -m "Release $version"
+    # This step may well lead to a merge conflict (probably even, since we have changed the version number).
+    # If so, fix it and commit.
     git push origin develop
 
     #. Remove release branch

@@ -1,6 +1,2 @@
 #!/bin/sh
-
-export PYTHONPATH="${PYTHONPATH}:/home/jcardoso/Code/logsight-cli-py"
-export PATH=$PATH":$HOME/Code/logsight-cli-py/bin"
-pwd
 ./src/ls-cli.py $@

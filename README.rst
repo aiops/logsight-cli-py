@@ -101,11 +101,12 @@ Environment variables take precedence over config variables.
 
 Alternatively, to set the required environment variables for the Logsight command-line client,
 you can create an environment file called an Logsight rc file, or logsightrc.sh file.
-You can update and, afterwards, source the following file:
+A sample file is available at bin/logsightrc.sh.
+You can update it and, afterwards, source it:
 
 .. code-block:: console
 
-    source bin/logsightrc.sh
+    $ source bin/logsightrc.sh
 
 
 Passing Options

@@ -38,5 +38,6 @@ setup(
         "prettytable",
         "tqdm",
     ],
-    zip_safe=False
+    zip_safe=False,
+    scripts=['bin/logsight']
 )
