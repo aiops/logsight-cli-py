@@ -28,13 +28,13 @@ VERSION = '2022.03.14'
 
 
 @click.group(help="CLI tool to manage logsight.ai artifacts")
-@click.version_option(VERSION)
+@click.version_option(VERSION, prog_name='Logsight CLI')
 @click.pass_context
 @click.option('--debug/--no-debug', default=False)
-@click.option('--email', default=CONFIG['EMAIL'], help='email of logsight user.')
-@click.option('--password', default=CONFIG['PASSWORD'], help='password of logsight user.')
-@click.option('--json', default=False, is_flag=True, help='output returned as a json structure.')
-@click.option('--app_id', default=CONFIG['APP_ID'], help='app_id to use as default.')
+@click.option('--email', default=CONFIG['EMAIL'], help='Email of logsight user.')
+@click.option('--password', default=CONFIG['PASSWORD'], help='Password of logsight user.')
+@click.option('--json', default=False, is_flag=True, help='Output returned as a json structure.')
+@click.option('--app_id', default=CONFIG['APP_ID'], help='Application ID to use as default.')
 def cli(ctx, debug, json, email, password, app_id):
     if not email or not password:
         click.echo(f"Authentication incomplete: EMAIL {'found' if email else 'not found'}, "

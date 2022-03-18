@@ -10,7 +10,7 @@ from logsight.compare import LogsightCompare
 @click.group()
 @click.pass_context
 def log(ctx):
-    """Operates on log files"""
+    """Manages log files"""
     pass
 
 
