@@ -25,13 +25,6 @@ README
     :alt: logsight.ai on Twitter
 
 
-Scope
------
-
-How To Make Quality Gates in CI/CD with GitHub
-    + https://cerberus-testing.medium.com/how-to-make-quality-gates-in-ci-cd-with-github-a373d8a443b8
-
-
 Logsight Command Line Interface
 -------------------------------
 
@@ -40,14 +33,22 @@ With this tool, you can manage your logs, applications, tags and execute analyti
 
 Commands available include:
 
-+ Applications
-    + Create and delete applications
-+ Users
-    + Register, activate and delete users (not yet available)
-    + Change and reset password (not yet available)
-+ Analytics
-    + Compare logs
-    + Detect incidents in logs
++----------------+-------------------------------------------------------------+
+| Object         | Description                                                 |
++================+=============================================================+
+| Applications   | Create and delete applications                              |
++----------------+-------------------------------------------------------------+
+| Users          | Register, activate and delete users (not yet available)     |
++                +-------------------------------------------------------------+
+|                | Change and reset password (not yet available)               |
++----------------+-------------------------------------------------------------+
+| Logs           | Upload log files                                            |
++                +-------------------------------------------------------------+
+|                | Obtain tags                                                 |
++----------------+-------------------------------------------------------------+
+| Analytics      | Compare logs                                                |
+|                | Detect incidents in logs                                    |
++----------------+-------------------------------------------------------------+
 
 
 Use Case
