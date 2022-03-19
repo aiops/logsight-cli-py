@@ -50,10 +50,10 @@ Bash workflow
     # Run gitchangelog to manually add changelog entries (the following command fails if it is the first release)
     gitchangelog ^$prev_version HEAD
 
-    # Update automatically or manually the version in setup.py
+    # Update automatically or manually the version in setup.py and ./src/logsight-cli.py
     # $ vi setup.py or
-    sed -i "/^version/s;[^ ]*$;'$version';" setup.py
-    # BSD/MacOS: sed -i "" "/^version/s;[^ ]*$;'$version';" setup.py
+    sed -i "/^VERSION/s;[^ ]*$;'$VERSION';" setup.py ./src/logsight-cli.py
+    # BSD/MacOS: sed -i "" "/^VERSION/s;[^ ]*$;'$VERSION';" setup.py ./src/logsight-cli.py
 
     # Make the documentation
     # Documentation is at:

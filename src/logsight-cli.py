@@ -13,24 +13,25 @@ from src.compare import compare
 from src.incident import incident
 from src.transformation import transformation
 
+LOGSIGHT_OPTIONS = ['EMAIL', 'PASSWORD', 'APP_ID', 'DEBUG', 'JSON']
 
 CONFIG_FILE = os.path.join(str(Path.home()), '.logsight')
 cp = ConfigParser()
 cp.read(CONFIG_FILE)
 
-CONFIG = {i: None for i in ['EMAIL', 'PASSWORD', 'APP_ID']}
+CONFIG = {i: None for i in LOGSIGHT_OPTIONS}
 CONFIG.update({i: cp['DEFAULT'][i] for i in CONFIG.keys()
                if cp.has_option('DEFAULT', i)})
 CONFIG.update({i: os.environ[f'LOGSIGHT_{i}'] for i in CONFIG.keys()
                if f'LOGSIGHT_{i}' in os.environ})
 
-VERSION = '2022.03.14'
+VERSION = '0.0.7'
 
 
 @click.group(help="CLI tool to manage logsight.ai artifacts")
 @click.version_option(VERSION, prog_name='Logsight CLI')
 @click.pass_context
-@click.option('--debug/--no-debug', default=False)
+@click.option('--debug/--no-debug', default=CONFIG['DEBUG'])
 @click.option('--email', default=CONFIG['EMAIL'], help='Email of logsight user.')
 @click.option('--password', default=CONFIG['PASSWORD'], help='Password of logsight user.')
 @click.option('--json', default=False, is_flag=True, help='Output returned as a json structure.')
@@ -41,14 +42,13 @@ def cli(ctx, debug, json, email, password, app_id):
                    f"PASSWORD {'found' if email else 'not found'}.")
         exit(1)
 
-    ctx.obj['USER'] = LogsightUser(email=email, password=password)
+    ctx.obj['EMAIL'] = email
+    ctx.obj['PASSWORD'] = password
     ctx.obj['APP_ID'] = app_id
     ctx.obj['DEBUG'] = debug
     ctx.obj['JSON'] = json
 
-    if debug:
-        click.echo(f"Config file found? {'yes' if Path(CONFIG_FILE).is_file() else 'no'}")
-        click.echo(f"EMAIL: {email}, PASSWORD: {password}")
+    ctx.obj['USER'] = LogsightUser(email=email, password=password)
 
 
 @cli.command()
@@ -57,9 +57,9 @@ def config(ctx):
     """
     Show configuration
     """
-    u = ctx.obj['USER']
-    a = ctx.obj['APP_ID']
-    click.echo(f"EMAIL: {u.email}, PASSWORD: {u.password}, APP_ID: {a}")
+    click.echo(f"Config file found? {f'yes ({Path(CONFIG_FILE)})' if Path(CONFIG_FILE).is_file() else 'no'}")
+    for i in LOGSIGHT_OPTIONS:
+        click.echo(f"{i} = {ctx.obj[i]}")
 
 
 cli.add_command(application.apps)

@@ -36,7 +36,7 @@ Logsight Command Line Interface
 -------------------------------
 
 The Logsight Command Line Interface (CLI) is a unified tool to manage your logs.
-With this tool, you can manage your logs, applications, tags and execute operations such as log verification.
+With this tool, you can manage your logs, applications, tags and execute analytics over logs such as verification.
 
 Commands available include:
 
@@ -52,6 +52,17 @@ Commands available include:
 
 Installation
 ------------
+
+Prerequisite
+============
+You have a `Logsight.ai`__ account with `EMAIL` and `PASSWORD`.
+
+.. __: https://logsight.ai/
+
+
+Install package
+===============
+
 The CLI can can installed using pip from PyPI.
 It has been tested with Mac and Linux operating systems.
 
@@ -60,9 +71,18 @@ It has been tested with Mac and Linux operating systems.
     $ pip install logsight-cli-py
 
 
-Prerequisite
-============
-You have a Logsight account with `EMAIL` and `PASSWORD`.
+To verify your CLI installation, use the logsight --version command:
+
+.. code-block:: console
+
+    $ logsight --version
+    logsight/0.0.6
+
+The output looks like logsight/x.y.z.
+If you don't see that output, and installed the Logsight CLI, check if you have an old logsight package on your system.
+Uninstall it with these instructions `uninstallation`_.
+
+
 
 Configuring Logsight CLI
 ========================
@@ -98,6 +118,7 @@ Environment variables take precedence over config variables.
     $ export LOGSIGHT_EMAIL=john.miller@zmail.com
     $ export LOGSIGHT_PASSWORD=sawhUz-hanpe4-zaqtyr
     $ export LOGSIGHT_APP_ID=07402355-e74e-4115-b21d-4cbf453490d1
+    $ export LOGSIGHT_DEBUG=True
 
 Alternatively, to set the required environment variables for the Logsight command-line client,
 you can create an environment file called an Logsight rc file, or logsightrc.sh file.
@@ -116,7 +137,7 @@ you can pass the same values as options as part of any logsight command.
 
 .. code-block:: console
 
-    $ python -m src.ls-cli --email john.miller@zmail.com --password sawhUz-hanpe4-zaqtyr applications ls
+    $ logsight --email john.miller@zmail.com --password sawhUz-hanpe4-zaqtyr applications ls
 
 
 Examples
@@ -128,10 +149,10 @@ The following list provides examples of useful commands:
 
 .. code-block:: console
 
-    $ python -m src.ls-cli config
+    $ logsight config
     EMAIL: john.miller@zmail.com, PASSWD: sawhUz-hanpe4-zaqtyr, APP_ID: 07402355-e74e-4115-b21d-4cbf453490d1
 
-    $ python -m src.ls-cli application ls
+    $ logsight application ls
     +--------------------------------------+------------------+
     |            APPLICATION Id            |       NAME       |
     +--------------------------------------+------------------+
@@ -141,16 +162,16 @@ The following list provides examples of useful commands:
     | 7a858f4f-33f7-4bba-ac5e-bd5fec0bd9a2 |    name_node     |
     +--------------------------------------+------------------+
 
-    $ python -m src.ls-cli application create --name <app name>
-    $ python -m src.ls-cli application delete --app_id <app id>
+    $ logsight application create --name <app name>
+    $ logsight application delete --app_id <app id>
 
-    $ python -m src.ls-cli log upload <file> --tag v1 --app_id <app id>
-    $ python -m src.ls-cli log tag ls --app_id <app id>
-    $ [Under development] python -m src.ls-cli log status --flush_id --app_id <app id>
+    $ logsight log upload <file> --tag v1 --app_id <app id>
+    $ logsight log tag ls --app_id <app id>
+    $ [Under development] logsight log status --flush_id --app_id <app id>
 
-    $ python -m src.ls-cli compare log --app_id <app id> --tags <tag v1> <tag v2> --flush_id <flush id>
-    $ python -m src.ls-cli incident log --app_id <app id> --tag <tag v1>
-    $ [Under development] python -m src.ls-cli quality log --app_id <app id> --tags <tag v1>
+    $ logsight compare log --app_id <app id> --tags <tag v1> <tag v2> --flush_id <flush id>
+    $ logsight incident log --app_id <app id> --tag <tag v1>
+    $ [Under development] logsight quality log --app_id <app id> --tags <tag v1>
 
 
 Comparing Logs
@@ -158,14 +179,24 @@ Comparing Logs
 
 .. code-block:: console
 
-    $ python -m src.ls-cli application create --name apache_srv2
+    $ logsight application create --name apache_srv2
     $ # copy the <app_id> returned to next command
     $ export LOGSIGHT_APP_ID=<app_id>
-    $ python -m src.ls-cli log upload hadoop_name_node_v1 --tag v1
-    $ python -m src.ls-cli log upload hadoop_name_node_v1 --tag v2
+    $ logsight log upload hadoop_name_node_v1 --tag v1
+    $ logsight log upload hadoop_name_node_v1 --tag v2
     $ # copy <flush_id> returned to next command
-    $ python -m src.ls-cli compare log --tags v1 v2 --flush_id <flush_id>
+    $ logsight compare log --tags v1 v2 --flush_id <flush_id>
 
+
+
+Uninstallation
+--------------
+
+Uninstall logsight package:
+
+.. code-block:: console
+
+    $ pip uninstall logsight
 
 
 Availability
