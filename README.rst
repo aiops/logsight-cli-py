@@ -75,11 +75,16 @@ For the impatient
 .. code-block:: console
 
     $ logsight application create --name apache_srv2
-    $ # copy the <app_id> returned to next command
+    app_id: a3de4ae5-a0be-42c5-a6d9-9e9c245831f5
+
+    # copy the <app_id> returned to next command
     $ export LOGSIGHT_APP_ID=<app_id>
-    $ logsight log upload hadoop_name_node_v1 --tag v1
-    $ logsight log upload hadoop_name_node_v1 --tag v2
-    $ # copy <flush_id> returned to next command
+
+    $ logsight log upload samples/hadoop_name_node_v1 --tag v1
+    $ logsight log upload samples/hadoop_name_node_v2 --tag v2
+    flush_id: cd7bb237-f6b6-4124-925d-9419eca75a48
+
+    # copy <flush_id> returned to next command
     $ logsight compare log --tags v1 v2 --flush_id <flush_id>
 
 
@@ -184,11 +189,20 @@ The following list provides examples of useful commands:
 .. code-block:: console
 
     $ logsight config
-    EMAIL: john.miller@zmail.com, PASSWD: sawhUz-hanpe4-zaqtyr, APP_ID: 07402355-e74e-4115-b21d-4cbf453490d1
+    Config file found? yes (/Users/jcardoso/.logsight)
+    +----------+--------------------------------------+
+    | OPTION   | VALUE                                |
+    +----------+--------------------------------------+
+    | EMAIL    | john.miller@gmail.com                |
+    | PASSWORD | ginrom-xUrfib-2sumfa                 |
+    | APP_ID   | 14082ca2-3e35-4a76-a37c-0d1a48931a19 |
+    | DEBUG    | True                                 |
+    | JSON     | False                                |
+    +----------+--------------------------------------+
 
     $ logsight application ls
     +--------------------------------------+------------------+
-    |            APPLICATION Id            |       NAME       |
+    |            APPLICATION ID            |       NAME       |
     +--------------------------------------+------------------+
     | 84c2ca94-e39c-498f-ad0d-0263434c71ac |    hdfs_node     |
     | 8b6cd73b-299b-4f2b-8334-3b820434a23a |   node_manager   |
@@ -198,14 +212,17 @@ The following list provides examples of useful commands:
 
     $ logsight application create --name <app name>
     $ logsight application delete --app_id <app id>
+    $ logsight application rename --name <app name> --app_id <app id> [Under development]
 
     $ logsight log upload <file> --tag v1 --app_id <app id>
     $ logsight log tag ls --app_id <app id>
-    $ [Under development] logsight log status --flush_id --app_id <app id>
+    $ logsight log tag describe --tag <tag> --app_id <app id> [Under development]
+    $ logsight log status --flush_id --app_id <app id> [Under development]
+    $ logsight log tail --tag <tag> --app_id <app id> [Under development]
 
     $ logsight compare log --app_id <app id> --tags <tag v1> <tag v2> --flush_id <flush id>
-    $ logsight incident log --app_id <app id> --tag <tag v1>
-    $ [Under development] logsight quality log --app_id <app id> --tags <tag v1>
+    $ logsight incident log --app_id <app id> --tag <tag>
+    $ logsight quality log --tags <tag> --app_id <apps id> [Under development]
 
 
 

@@ -61,6 +61,7 @@ def log(ctx, app_id, tag, flush_id):
                 click.echo(s)
             else:
                 table = PrettyTable(['KEY', 'VALUE'])
+                table.align = 'l'
                 for key, value in r.items():
                     table.add_row([key, value])
                 click.echo(table)

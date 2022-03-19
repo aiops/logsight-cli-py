@@ -32,6 +32,7 @@ def ls(ctx):
             click.echo(json.dumps(app_mng.lst(), sort_keys=True, indent=4))
         else:
             table = PrettyTable(['APPLICATION ID', 'NAME'])
+            table.align = 'l'
             for a in app_mng.lst()['applications']:
                 table.add_row([a['applicationId'], a['name']])
             click.echo(table)

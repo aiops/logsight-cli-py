@@ -72,7 +72,8 @@ def ls(ctx, app_id):
         if ctx.obj['JSON']:
             click.echo(json.dumps(cmp_mng.tags(a), sort_keys=True, indent=4))
         else:
-            table = PrettyTable(['Tag', 'View'])
+            table = PrettyTable(['TAG', 'VIEW'])
+            table.align = 'l'
             for i in cmp_mng.tags(a):
                 table.add_row([i['tag'], i['tagView']])
             click.echo(table)

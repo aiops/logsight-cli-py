@@ -4,6 +4,7 @@ import os
 import click
 from configparser import ConfigParser
 from pathlib import Path
+from prettytable import PrettyTable
 
 from logsight.user import LogsightUser
 
@@ -58,8 +59,11 @@ def config(ctx):
     Show configuration
     """
     click.echo(f"Config file found? {f'yes ({Path(CONFIG_FILE)})' if Path(CONFIG_FILE).is_file() else 'no'}")
+    table = PrettyTable(['OPTION', 'VALUE'])
+    table.align = 'l'
     for i in LOGSIGHT_OPTIONS:
-        click.echo(f"{i} = {ctx.obj[i]}")
+        table.add_row([i, ctx.obj[i]])
+    click.echo(table)
 
 
 cli.add_command(application.apps)
