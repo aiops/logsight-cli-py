@@ -72,6 +72,9 @@ Description
 For the impatient
 ==================
 
+Once you have an account with logsight.ai, you can execute our `Hello World`.
+(The example has been tested with Linux).
+
 .. code-block:: console
 
     $ logsight application create --name apache_srv2
@@ -85,8 +88,8 @@ For the impatient
     flush_id: cd7bb237-f6b6-4124-925d-9419eca75a48
 
     # copy <flush_id> returned to next command
-    $ logsight compare log --tags v1 v2 --flush_id <flush_id>
-
+    $ logsight compare log --tags v1 v2 --flush_id <flush_id> | grep risk
+    | risk                            | 60
 
 
 Installation
@@ -202,12 +205,13 @@ The following list provides examples of useful commands:
 
     $ logsight application ls
     +--------------------------------------+------------------+
-    |            APPLICATION ID            |       NAME       |
+    | APPLICATION ID                       | NAME             |
     +--------------------------------------+------------------+
-    | 84c2ca94-e39c-498f-ad0d-0263434c71ac |    hdfs_node     |
-    | 8b6cd73b-299b-4f2b-8334-3b820434a23a |   node_manager   |
-    | 208d3b6d-15b7-402d-b53a-4c32c2eff623 | resource_manager |
-    | 7a858f4f-33f7-4bba-ac5e-bd5fec0bd9a2 |    name_node     |
+    | a3de4ae5-a0be-42c5-a6d9-9e9c245831f5 | apache_srv2      |
+    | 7bc44909-a132-40e0-a4e7-1e3caf5b7f45 | hdfs_node        |
+    | cb92e882-fd26-41c4-80f0-ff56a8722b8c | node_manager     |
+    | 71538838-0296-40fa-8bbc-d91e112a2aab | resource_manager |
+    | 83a16a6f-6328-4ef9-b4cc-6afe31f70a91 | name_node        |
     +--------------------------------------+------------------+
 
     $ logsight application create --name <app name>
