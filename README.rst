@@ -62,7 +62,7 @@ Description
 + Since manually comparing logs is an Herculean task, you submit the logs to logsight.ai for verification
 + logsight.ai returns back a report with various metrics and a deployment risk score
 
-.. image:: docs/use_case.png
+.. figure:: docs/use_case.png
     :width: 400
     :align: center
     :alt: Use Case for Logsight CLI
