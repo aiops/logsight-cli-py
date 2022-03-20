@@ -1,7 +1,6 @@
-(unreleased)
-------------
+0.0.9 (2022-03-20)
+------------------
 
-Release 0.0.9
 Changes
 ~~~~~~~
 - Use package in PyPi. [Jorge Cardoso]
@@ -12,15 +11,8 @@ Fix
 - Release workflow. [Jorge Cardoso]
 
 
-Release 0.0.8
-Changes
-~~~~~~~
-- Use package in PyPi. [Jorge Cardoso]
-
-Fix
-~~~
-- Release workflow. [Jorge Cardoso]
-
+0.0.8 (2022-03-20)
+------------------
 
 Changes
 ~~~~~~~
