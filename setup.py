@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-VERSION = '0.0.11'
+VERSION = '0.0.12'
 
 
 with open("README.rst", "r", encoding="utf-8") as fh:
@@ -16,7 +16,7 @@ setup(
     author_email='jorge.cardoso.pt@gmail.com',
     url="https://github.com/aiops/logsight-cli-py",
     project_urls={
-        "Documentation": "http://logsight.readthedocs.io/en/latest/",
+        "Documentation": "https://github.com/aiops/logsight-cli-py/",
         "Source": "https://github.com/aiops/logsight-cli-py",
         "Tracker": "https://github.com/aiops/logsight-cli-py/issues",
     },
