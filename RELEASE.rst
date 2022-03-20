@@ -31,9 +31,9 @@ Bash workflow
     #. Created a new release id
     # Tags follow Semantic Versioning (https://semver.org): Major, Minor, Patch.
 
+    # update release version
     prev_version=$(python setup.py --version)
     echo "Previous release: $prev_version"
-    # update release version
     version=$(echo $prev_version | perl -pe 's/^((\d+\.)*)(\d+)(.*)$/$1.($3+1).$4/e')
     echo "New release: $version"
 
