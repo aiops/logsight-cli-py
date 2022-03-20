@@ -63,7 +63,7 @@ Description
 + Since manually comparing logs is an Herculean task, you submit the logs to logsight.ai for verification
 + logsight.ai returns back a report with various metrics and a deployment risk score
 
-.. figure:: docs/use_case.png
+.. figure:: img/use_case.png
     :width: 400
     :align: center
     :alt: Use Case for Logsight CLI
@@ -72,7 +72,7 @@ Description
 For the impatient
 ==================
 
-Once you have an account with logsight.ai, you can execute our `Hello World`.
+Once you have an account with `Logsight.ai`__, you can execute our `Hello World`.
 (The example has been tested with Linux).
 
 .. code-block:: console
@@ -152,7 +152,7 @@ It can be set if you frequently use the same application and want to avoid passi
 
 Using Environment Variables
 ===========================
-You can also set the variables using your environment, `LOGSIGHT_EMAIL`, `LOGSIGHT_PASSWORD` and `LOGSIGHT_APP_ID`.
+You can also set the variables using your environment, `LOGSIGHT_EMAIL`, `LOGSIGHT_PASSWORD`, `LOGSIGHT_APP_ID`, etc.
 Environment variables take precedence over config variables.
 
 .. code-block:: console
@@ -161,6 +161,7 @@ Environment variables take precedence over config variables.
     $ export LOGSIGHT_PASSWORD=sawhUz-hanpe4-zaqtyr
     $ export LOGSIGHT_APP_ID=07402355-e74e-4115-b21d-4cbf453490d1
     $ export LOGSIGHT_DEBUG=True
+    $ export LOGSIGHT_JSON=True
 
 Alternatively, to set the required environment variables for the Logsight command-line client,
 you can create an environment file called an Logsight rc file, or logsightrc.sh file.
@@ -192,7 +193,7 @@ The following list provides examples of useful commands:
 .. code-block:: console
 
     $ logsight config
-    Config file found? yes (/Users/jcardoso/.logsight)
+    Config file found? yes (/Users/jmiller/.logsight)
     +----------+--------------------------------------+
     | OPTION   | VALUE                                |
     +----------+--------------------------------------+
@@ -219,10 +220,24 @@ The following list provides examples of useful commands:
     $ logsight application rename --name <app name> --app_id <app id> [Under development]
 
     $ logsight log upload <file> --tag v1 --app_id <app id>
-    $ logsight log tag ls --app_id <app id>
-    $ logsight log tag describe --tag <tag> --app_id <app id> [Under development]
+    $ logsight log tag ls --app_id <app id> [Under development]
+    +-------+---------------------+---------------------+
+    | TAG   | PERIOD START        | PERIOD END          |
+    +-------+---------------------+---------------------+
+    | V1    | 2013-10-02T10:50:12 | 2013-10-11T11:12:31 |
+    | V2    | 2013-11-08T11:20:14 | 2013-12-02T07:02:09 |
+    +-------+---------------------+---------------------+
+
     $ logsight log status --flush_id --app_id <app id> [Under development]
-    $ logsight log tail --tag <tag> --app_id <app id> [Under development]
+    +-------+------------+---------------------+---------------------+
+    | TAG   | STATUS     | PERIOD START        | PERIOD END          |
+    +-------+------------+---------------------+---------------------+
+    | V1    | PENDING    | 2013-10-02T10:50:12 | 2013-10-11T11:12:31 |
+    +-------+------------+---------------------+---------------------+
+
+    $ logsight log tail --tag <tag> -n 2 --app_id <app id> [Under development]
+    2021-12-16 05:16:27,454 INFO org.apache.hadoop.hdfs.DFSUtil: Starting Web-server for hdfs at: http://0.0.0.0:9870
+    2021-12-16 05:16:30,464 INFO org.eclipse.jetty.util.log: Logging initialized @924ms to org.eclipse.jetty.util.log.Slf4jLog
 
     $ logsight compare log --app_id <app id> --tags <tag v1> <tag v2> --flush_id <flush id>
     $ logsight incident log --app_id <app id> --tag <tag>

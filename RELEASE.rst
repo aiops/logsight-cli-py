@@ -52,17 +52,10 @@ Bash workflow
 
     # Update automatically or manually the version in setup.py and ./src/logsight-cli.py
     # $ vi setup.py or
-    sed -i "/^VERSION/s;[^ ]*$;'$VERSION';" setup.py ./src/logsight-cli.py
-    # BSD/MacOS: sed -i "" "/^VERSION/s;[^ ]*$;'$VERSION';" setup.py ./src/logsight-cli.py
+    sed -i "/^VERSION/s;[^ ]*$;'$version';" setup.py ./src/logsight_cli.py
+    # BSD/MacOS: sed -i "" "/^VERSION/s;[^ ]*$;'$version';" setup.py ./src/logsight_cli.py
 
-    # Make the documentation
-    # Documentation is at:
-    # - https://www.sphinx-doc.org/en/master/tutorial/
-    # - https://www.sphinx-doc.org/_/downloads/en/master/pdf/
-    cd docs ; make clean ; make html ; cd ..
-
-    # Warning: The following command should be executed manually
-    # Execute tests
+    # Warning: Execute the tests manually
     # tox
 
     git commit -a -m "Preparation for release $version"
