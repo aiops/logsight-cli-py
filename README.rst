@@ -211,7 +211,6 @@ The following list provides examples of useful commands:
     +--------------------------------------+------------------+
     | APPLICATION ID                       | NAME             |
     +--------------------------------------+------------------+
-    | a3de4ae5-a0be-42c5-a6d9-9e9c245831f5 | apache_srv2      |
     | 7bc44909-a132-40e0-a4e7-1e3caf5b7f45 | hdfs_node        |
     | cb92e882-fd26-41c4-80f0-ff56a8722b8c | node_manager     |
     | 71538838-0296-40fa-8bbc-d91e112a2aab | resource_manager |
