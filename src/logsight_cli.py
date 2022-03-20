@@ -34,7 +34,7 @@ CONFIG.update(
     }
 )
 
-VERSION = '0.0.8'
+VERSION = '0.0.9'
 
 
 @click.group(help="CLI tool to manage logsight.ai artifacts")
