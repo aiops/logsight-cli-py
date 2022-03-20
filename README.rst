@@ -98,6 +98,7 @@ Once you have an account with `Logsight.ai`__, you can execute our `Hello World`
     ...
     +---------------------------------+--------------------------------------+
 
+The risk of deployment is 1. Thus, it is safe.
 
 Installation
 ------------
