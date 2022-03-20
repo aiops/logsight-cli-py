@@ -97,7 +97,7 @@ Installation
 
 Prerequisite
 ============
-You have a `Logsight.ai`__ account with `EMAIL` and `PASSWORD`.
+You have a `Logsight.ai`_ account with `EMAIL` and `PASSWORD`.
 
 .. __: https://logsight.ai/
 
