@@ -100,6 +100,7 @@ Once you have an account with `Logsight.ai`__, you can execute our `Hello World`
 
 The risk of deployment is 1. Thus, it is safe.
 
+
 Installation
 ------------
 
@@ -194,8 +195,6 @@ you can pass the same values as options as part of any logsight command.
 Examples
 --------
 
-Single Commands
-===============
 The following list provides examples of useful commands:
 
 .. code-block:: console
@@ -204,8 +203,8 @@ The following list provides examples of useful commands:
     +----------+--------------------------------------+---------------------------+
     | OPTION   | VALUE                                | SOURCE                    |
     +----------+--------------------------------------+---------------------------+
-    | EMAIL    | john.miller@gmail.com                | Option                    |
-    | PASSWORD | sawhUz-hanpe4-zaqtyr                 | Env                       |
+    | EMAIL    | john.miller@gmail.com                | Environment               |
+    | PASSWORD | sawhUz-hanpe4-zaqtyr                 | Environment               |
     | APP_ID   | 14082ca2-3e35-4a76-a37c-0d1a48931a19 | /Users/jmiller/.logsight  |
     | DEBUG    | True                                 | /Users/jmiller/.logsight  |
     | JSON     | False                                | /Users/jmiller/.logsight  |
