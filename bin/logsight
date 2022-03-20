@@ -1,2 +1,2 @@
 #!/bin/sh
-./src/ls-cli.py $@
+./src/logsight_cli.py $@

@@ -50,19 +50,12 @@ Bash workflow
     # Run gitchangelog to manually add changelog entries (the following command fails if it is the first release)
     gitchangelog ^$prev_version HEAD
 
-    # Update automatically or manually the version in setup.py
+    # Update automatically or manually the version in setup.py and ./src/logsight-cli.py
     # $ vi setup.py or
-    sed -i "/^version/s;[^ ]*$;'$version';" setup.py
-    # BSD/MacOS: sed -i "" "/^version/s;[^ ]*$;'$version';" setup.py
+    sed -i "/^VERSION/s;[^ ]*$;'$version';" setup.py ./src/logsight_cli.py
+    # BSD/MacOS: sed -i "" "/^VERSION/s;[^ ]*$;'$version';" setup.py ./src/logsight_cli.py
 
-    # Make the documentation
-    # Documentation is at:
-    # - https://www.sphinx-doc.org/en/master/tutorial/
-    # - https://www.sphinx-doc.org/_/downloads/en/master/pdf/
-    cd docs ; make clean ; make html ; cd ..
-
-    # Warning: The following command should be executed manually
-    # Execute tests
+    # Warning: Execute the tests manually
     # tox
 
     git commit -a -m "Preparation for release $version"
@@ -72,7 +65,7 @@ Bash workflow
     git pull
     git merge --no-ff release/$version -m "Release $version"
     git tag -a $version -m "Release $version"
-    git push --tags
+    git push --atomic --tags
 
     #. Update develop branch
     git checkout develop
