@@ -66,6 +66,7 @@ Bash workflow
     git merge --no-ff release/$version -m "Release $version"
     git tag -a $version -m "Release $version"
     git push --atomic --tags
+    git push origin main
 
     #. Update develop branch
     git checkout develop
