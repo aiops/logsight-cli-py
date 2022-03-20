@@ -270,4 +270,4 @@ The Logsight CLI Python package is deployed to the following external platforms:
 .. _logsight.ai: https://logsight.ai
 .. _test pypi: https://test.pypi.org/search/?q=%22logsight-cli-py%22&o=
 .. _pypi: https://pypi.org/search/?q=%22logsight-cli-py%22&o=
-.. _docs: https://logsight-cli-py.readthedocs.io
+.. _docs: https://github.com/aiops/logsight-cli-py
