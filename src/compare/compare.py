@@ -60,9 +60,14 @@ def log(ctx, app_id, tags, flush_id):
             else:
                 table = PrettyTable(["KEY", "VALUE"])
                 table.align = "l"
+                link = None
                 for key, value in r.items():
-                    table.add_row([key, value])
+                    if key != 'link':
+                        table.add_row([key, value])
+                    else:
+                        link = value
                 click.echo(table)
+                click.echo('Link: ' + link)
 
             sys.exit(0)
             break

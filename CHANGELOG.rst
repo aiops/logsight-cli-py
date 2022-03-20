@@ -1,3 +1,6 @@
+0.0.11 (2022-03-20)
+- Release 0.0.11. [Jorge Cardoso]
+
 0.0.10 (2022-03-20)
 ------------
 - Release 0.0.10. [Jorge Cardoso]
