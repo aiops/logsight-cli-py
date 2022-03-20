@@ -73,27 +73,37 @@ For the impatient
 ==================
 
 Once you have an account with `Logsight.ai`__, you can execute our `Hello World`.
-(The example has been tested with Linux).
 
 .. code-block:: console
 
-    $ logsight application create --name apache_srv2
+    $ logsight application create --name apache_srv
     app_id: a3de4ae5-a0be-42c5-a6d9-9e9c245831f5
 
     # copy the <app_id> returned to next command
-    $ export LOGSIGHT_APP_ID=<app_id>
+    $ export LOGSIGHT_APP_ID=a3de4ae5-a0be-42c5-a6d9-9e9c245831f5
 
     $ logsight log upload samples/hadoop_name_node_v1 --tag v1
     $ logsight log upload samples/hadoop_name_node_v2 --tag v2
     flush_id: cd7bb237-f6b6-4124-925d-9419eca75a48
 
     # copy <flush_id> returned to next command
-    $ logsight compare log --tags v1 v2 --flush_id <flush_id> | grep risk
-    | risk                            | 60
+    $ logsight compare log --tags v1 v2 --flush_id cd7bb237-f6b6-4124-925d-9419eca75a48
+    +---------------------------------+--------------------------------------+
+    | KEY                             | VALUE                                |
+    +---------------------------------+--------------------------------------+
+    ...
+    | risk                            | 1                                    |
+    | totalLogCount                   | 8332                                 |
+    | baselineLogCount                | 4166                                 |
+    ...
+    +---------------------------------+--------------------------------------+
 
 
 Installation
 ------------
+
+The installation has been tested with Mac and Linux operating systems.
+
 
 Prerequisite
 ============
@@ -106,7 +116,6 @@ Install package
 ===============
 
 The CLI can can installed using pip from PyPI.
-It has been tested with Mac and Linux operating systems.
 
 .. code-block:: console
 
@@ -125,7 +134,6 @@ If you don't see that output, and installed the Logsight CLI, check if you have 
 Uninstall it with these instructions `uninstallation`_.
 
 
-
 Configuring Logsight CLI
 ========================
 There are several methods you can use to configure the settings that the Logsight CLI uses when interacting with Logsight.ai service,
@@ -136,7 +144,7 @@ There is a specific load order for what will be used.
 Using Logsight Config
 ======================
 You can create a `.logsight` config file to set up your configuration with Logsight server.
-The file should be placed in your home directory.
+The file should be placed in your home directory and contains variables such `EMAIL`, `PASSWORD`, `APP_ID`, etc.
 
 .. code-block:: console
 
@@ -144,15 +152,16 @@ The file should be placed in your home directory.
     [DEFAULT]
     EMAIL = john.miller@zmail.com
     PASSWORD = sawhUz-hanpe4-zaqtyr
-    APP_ID = 07402355-e74e-4115-b21d-4cbf453490d1
+    APP_ID = 14082ca2-3e35-4a76-a37c-0d1a48931a19
+    DEBUG = True
+    JSON = True
 
-Setting the variable APP_ID is optional.
-It can be set if you frequently use the same application and want to avoid passing the Id as a parameter for each command invoked.
+Setting the variable APP_ID with a default value is useful if you frequently use the same application and want to avoid passing the Id as a parameter for each command invoked.
 
 
 Using Environment Variables
 ===========================
-You can also set the variables using your environment, `LOGSIGHT_EMAIL`, `LOGSIGHT_PASSWORD`, `LOGSIGHT_APP_ID`, etc.
+You can also set the variables using your environment.
 Environment variables take precedence over config variables.
 
 .. code-block:: console
@@ -163,14 +172,12 @@ Environment variables take precedence over config variables.
     $ export LOGSIGHT_DEBUG=True
     $ export LOGSIGHT_JSON=True
 
-Alternatively, to set the required environment variables for the Logsight command-line client,
-you can create an environment file called an Logsight rc file, or logsightrc.sh file.
-A sample file is available at bin/logsightrc.sh.
+An executable file which can be used to set these environment variables is also available.
 You can update it and, afterwards, source it:
 
 .. code-block:: console
 
-    $ source bin/logsightrc.sh
+    $ source config/logsightrc.sh
 
 
 Passing Options
@@ -193,16 +200,15 @@ The following list provides examples of useful commands:
 .. code-block:: console
 
     $ logsight config
-    Config file found? yes (/Users/jmiller/.logsight)
-    +----------+--------------------------------------+
-    | OPTION   | VALUE                                |
-    +----------+--------------------------------------+
-    | EMAIL    | john.miller@gmail.com                |
-    | PASSWORD | ginrom-xUrfib-2sumfa                 |
-    | APP_ID   | 14082ca2-3e35-4a76-a37c-0d1a48931a19 |
-    | DEBUG    | True                                 |
-    | JSON     | False                                |
-    +----------+--------------------------------------+
+    +----------+--------------------------------------+---------------------------+
+    | OPTION   | VALUE                                | SOURCE                    |
+    +----------+--------------------------------------+---------------------------+
+    | EMAIL    | john.miller@gmail.com                | Option                    |
+    | PASSWORD | sawhUz-hanpe4-zaqtyr                 | Env                       |
+    | APP_ID   | 14082ca2-3e35-4a76-a37c-0d1a48931a19 | /Users/jmiller/.logsight  |
+    | DEBUG    | True                                 | /Users/jmiller/.logsight  |
+    | JSON     | False                                | /Users/jmiller/.logsight  |
+    +----------+--------------------------------------+---------------------------+
 
     $ logsight application ls
     +--------------------------------------+------------------+
