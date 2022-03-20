@@ -152,8 +152,8 @@ The file should be placed in your home directory and contains variables such `EM
     EMAIL = john.miller@zmail.com
     PASSWORD = sawhUz-hanpe4-zaqtyr
     APP_ID = 14082ca2-3e35-4a76-a37c-0d1a48931a19
-    DEBUG = True
-    JSON = True
+    DEBUG = False
+    JSON = False
 
 Setting the variable APP_ID with a default value is useful if you frequently use the same application and want to avoid passing the Id as a parameter for each command invoked.
 
@@ -168,8 +168,8 @@ Environment variables take precedence over config variables.
     $ export LOGSIGHT_EMAIL=john.miller@zmail.com
     $ export LOGSIGHT_PASSWORD=sawhUz-hanpe4-zaqtyr
     $ export LOGSIGHT_APP_ID=07402355-e74e-4115-b21d-4cbf453490d1
-    $ export LOGSIGHT_DEBUG=True
-    $ export LOGSIGHT_JSON=True
+    $ export LOGSIGHT_DEBUG=False
+    $ export LOGSIGHT_JSON=False
 
 An executable file which can be used to set these environment variables is also available.
 You can update it and, afterwards, source it:
