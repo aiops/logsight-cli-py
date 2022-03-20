@@ -16,48 +16,55 @@ N_CALL_RETRIES = 10
 @click.pass_context
 def compare(ctx):
     """Compares log files"""
-    pass
 
 
 @compare.command()
 @click.pass_context
-@click.option('--app_id', help='id of the application')
-@click.option('--tags', required=True, type=click.Tuple([str, str]), help='tags to use during comparison')
-@click.option('--flush_id', help='flush id')
+@click.option("--app_id", help="id of the application")
+@click.option("--tags", required=True, type=click.Tuple([str, str]),
+              help="tags to use during comparison")
+@click.option("--flush_id", help="flush id")
 def log(ctx, app_id, tags, flush_id):
     """
     compare indexed logs
 
-    python -m cli.ls-cli compare log --app_id <applicationId> --tags <tag_v1> <tag_v2> --flush_id <flushId>
+    python -m src.logsight_cli compare log \
+    --app_id <applicationId> --tags <tag_v1> <tag_v2> --flush_id <flushId>
     """
-    u = ctx.obj['USER']
-    a = app_id or ctx.obj['APP_ID']
+    u = ctx.obj["USER"]
+    a = app_id or ctx.obj["APP_ID"]
 
     comp = LogsightCompare(u.user_id, u.token)
-    for _ in (td := tqdm(range(1, N_CALL_RETRIES + 1),
-                         desc='Call retries',
-                         colour='white',
-                         file=sys.stdout,
-                         disable=not ctx.obj['DEBUG'])):
+    for _ in (
+        td := tqdm(
+            range(1, N_CALL_RETRIES + 1),
+            desc="Call retries",
+            colour="white",
+            file=sys.stdout,
+            disable=not ctx.obj["DEBUG"],
+        )
+    ):
         td.refresh()
         try:
-            r = comp.compare(app_id=a,
-                             baseline_tag=tags[0],
-                             candidate_tag=tags[1],
-                             flush_id=flush_id,
-                             verbose=ctx.obj['DEBUG'])
+            r = comp.compare(
+                app_id=a,
+                baseline_tag=tags[0],
+                candidate_tag=tags[1],
+                flush_id=flush_id,
+                verbose=ctx.obj["DEBUG"],
+            )
 
-            if ctx.obj['JSON']:
+            if ctx.obj["JSON"]:
                 s = json.dumps(r, sort_keys=True, indent=4)
                 click.echo(s)
             else:
-                table = PrettyTable(['KEY', 'VALUE'])
-                table.align = 'l'
+                table = PrettyTable(["KEY", "VALUE"])
+                table.align = "l"
                 for key, value in r.items():
                     table.add_row([key, value])
                 click.echo(table)
 
-            exit(0)
+            sys.exit(0)
             break
         except Conflict:
             time.sleep(10)
@@ -65,5 +72,5 @@ def log(ctx, app_id, tags, flush_id):
             click.echo(e)
             break
 
-    click.echo('Unable to compare log files')
-    exit(1)
+    click.echo("Unable to compare log files")
+    sys.exit(1)
