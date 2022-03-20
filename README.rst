@@ -73,7 +73,7 @@ Once you have an account with `Logsight.ai`__, you can execute our `Hello World`
 
 .. code-block:: console
 
-    $ logsight application create --name apache_srv
+    $ logsight application create --name hadoop_name_node
     app_id: a3de4ae5-a0be-42c5-a6d9-9e9c245831f5
 
     # copy the <app_id> returned to next command
