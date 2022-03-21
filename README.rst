@@ -89,13 +89,13 @@ Once you have an account with `Logsight.ai`__, you can execute our `Hello World`
     | KEY                             | VALUE                                |
     +---------------------------------+--------------------------------------+
     ...
-    | risk                            | 1                                    |
+    | risk                            | 23                                   |
     | totalLogCount                   | 8332                                 |
     | baselineLogCount                | 4166                                 |
     ...
     +---------------------------------+--------------------------------------+
 
-The risk of deployment is 1. Thus, it is safe.
+The risk of deployment is 23%. Thus, it is safe to deploy version v2 of the application.
 
 
 Installation
