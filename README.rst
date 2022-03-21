@@ -126,7 +126,7 @@ To verify your CLI installation, use the logsight --version command:
 .. code-block:: console
 
     $ logsight --version
-    logsight/0.0.6
+    logsight/0.0.12
 
 The output looks like logsight/x.y.z.
 If you don't see that output, and installed the Logsight CLI, check if you have an old logsight package on your system.
