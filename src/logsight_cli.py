@@ -40,7 +40,7 @@ CONFIG.update(
     }
 )
 
-VERSION = '0.0.12'
+VERSION = '0.0.13'
 
 
 @click.group(help="CLI tool to manage logsight.ai artifacts")
@@ -59,7 +59,7 @@ def cli(ctx, debug, json, email, password, app_id):
 
     for k in LOGSIGHT_OPTIONS:
         ctx.obj[k] = CONFIG[k][0]
-        if k in ['DEBUG', 'JSON']:
+        if k in ['DEBUG', 'JSON'] and ctx.obj[k] is not None:
             ctx.obj[k] = js.loads(ctx.obj[k].lower())
 
     ctx.obj["USER"] = LogsightUser(email=ctx.obj["EMAIL"],

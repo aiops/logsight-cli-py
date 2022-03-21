@@ -40,9 +40,8 @@ Bash workflow
     # Create a branch from the current HEAD (does not touch local changes)
     git checkout -b release/$version develop
 
-    # Warning: The following commands should be executed manually
-    # Execute tests
-    # $ python -m unittest discover tests`
+    # Warning: Execute the tests manually
+    # tox
 
     # Update the changelog
     # add commit message from HEAD to the previous tag
@@ -51,12 +50,13 @@ Bash workflow
     gitchangelog ^$prev_version HEAD
 
     # Update automatically or manually the version in setup.py and ./src/logsight-cli.py
-    # $ vi setup.py or
-    sed -i "/^VERSION/s;[^ ]*$;'$version';" setup.py ./src/logsight_cli.py
-    # BSD/MacOS: sed -i "" "/^VERSION/s;[^ ]*$;'$version';" setup.py ./src/logsight_cli.py
-
-    # Warning: Execute the tests manually
-    # tox
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        sed -i "/^VERSION/s;[^ ]*$;'$version';" setup.py ./src/logsight_cli.py
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        sed -i "" "/^VERSION/s;[^ ]*$;'$version';" setup.py ./src/logsight_cli.py
+    else
+        echo "OS is not supported"
+    fi
 
     git commit -a -m "Preparation for release $version"
 
