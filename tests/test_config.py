@@ -3,6 +3,9 @@ from click.testing import CliRunner
 from logsight_cli.logsight_cli import cli
 
 
+AUTH = ['--email', 'jorge.cardoso.pt@gmail.com', '--password', 'pijgu8-jeCjuw-segtes']
+
+
 def test_config():
     runner = CliRunner()
     result = runner.invoke(cli, ['config'], obj={})
@@ -12,7 +15,7 @@ def test_config():
 
 def test_application():
     runner = CliRunner()
-    result = runner.invoke(cli, ['application', 'ls'], obj={})
+    result = runner.invoke(cli, AUTH + ['application', 'ls'], obj={})
     assert result.exit_code == 0
     assert 'APPLICATION' in result.output
 
