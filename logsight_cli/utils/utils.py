@@ -1,6 +1,6 @@
 import click
 
-from src.utils.log_parser import parse_line
+from logsight_cli.utils.log_parser import parse_line
 
 
 @click.group()

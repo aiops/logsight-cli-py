@@ -39,5 +39,9 @@ setup(
         "tqdm",
     ],
     zip_safe=False,
-    scripts=['bin/logsight']
+    entry_points={
+        "console_scripts": [
+            "logsight = logsight_cli.logsight_cli:main",
+        ]
+    }
 )

@@ -1,6 +1,6 @@
 from click.testing import CliRunner
 
-from src.logsight_cli import cli
+from logsight_cli.logsight_cli import cli
 
 
 def test_config():
