@@ -1,3 +1,8 @@
+logsight-sdk-py           # BSD License (BSD (3 clause))
+click                     # BSD License (BSD (3 Clause))
+prettytable               # BSD License (BSD (3 clause))
+tqdm                      # MIT License
+
 tox                       # MIT License
 flake8                    # Apache Software License (Apache 2.0)
 pylint                    # GNU General Public License v2 (GPLv2)
