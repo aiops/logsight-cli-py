@@ -2,5 +2,6 @@ tox                       # MIT License
 flake8                    # Apache Software License (Apache 2.0)
 pylint                    # GNU General Public License v2 (GPLv2)
 pytest                    # MIT License
+pytest-cov                # MIT License
 gitchangelog              # BSD License (BSD 3-Clause License)
 twine                     # Apache Software License
