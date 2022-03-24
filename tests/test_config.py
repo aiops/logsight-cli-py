@@ -8,7 +8,7 @@ AUTH = ['--email', 'jorge.cardoso.pt@gmail.com', '--password', 'pijgu8-jeCjuw-se
 
 def test_config():
     runner = CliRunner()
-    result = runner.invoke(cli, ['config'], obj={})
+    result = runner.invoke(cli, AUTH + ['config'], obj={})
     assert result.exit_code == 0
     assert 'EMAIL' in result.output
 
