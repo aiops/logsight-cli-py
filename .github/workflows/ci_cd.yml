@@ -102,7 +102,7 @@ jobs:
           pip install .
       - name: Test installation
         run: |
-          python logsight --verion
+          logsight --verion
 
   publish:
     name: Publish to PyPI and TestPyPI
