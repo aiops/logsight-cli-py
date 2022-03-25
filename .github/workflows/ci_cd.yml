@@ -156,6 +156,13 @@ jobs:
           echo "::set-output name=tag::$(git tag --sort=-creatordate | head -1)"
           echo ${{ steps.latest_tag.output.name }}
 
+      - name: Set env tag
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Test env tag
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
+
       - name: Read CHANGELOG.rst
         id: changelog
         uses: juliangruber/read-file-action@v1
