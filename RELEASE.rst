@@ -35,7 +35,8 @@ Bash workflow
     prev_version=$(python setup.py --version)
     echo "Previous release: $prev_version"
     version=$(echo $prev_version | perl -pe 's/^((\d+\.)*)(\d+)(.*)$/$1.($3+1).$4/e')
-    echo "New release: $version"
+    echo "New release:     version=$(echo $prev_version | perl -pe 's/^((\d+\.)*)(\d+)(.*)$/$1.($3+1).$4/e')
+    echo "New release: $version""
 
     # Create a branch from the current HEAD (does not touch local changes)
     git checkout -b release/$version develop
@@ -49,11 +50,11 @@ Bash workflow
     # Run gitchangelog to manually add changelog entries (the following command fails if it is the first release)
     gitchangelog ^$prev_version HEAD
 
-    # Update automatically or manually the version in setup.py and ./src/logsight-cli.py
+    # Update automatically or manually the version in setup.py and ./logsight_cli/logsight-cli.py
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        sed -i "/^VERSION/s;[^ ]*$;'$version';" setup.py ./src/logsight_cli.py
+        sed -i "/^VERSION/s;[^ ]*$;'$version';" setup.py ./logsight_cli/logsight_cli.py
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i "" "/^VERSION/s;[^ ]*$;'$version';" setup.py ./src/logsight_cli.py
+        sed -i "" "/^VERSION/s;[^ ]*$;'$version';" setup.py ./logsight_cli/logsight_cli.py
     else
         echo "OS is not supported"
     fi

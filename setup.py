@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-VERSION = '0.0.13'
+VERSION = '0.0.14'
 
 
 with open("README.rst", "r", encoding="utf-8") as fh:
@@ -39,5 +39,9 @@ setup(
         "tqdm",
     ],
     zip_safe=False,
-    scripts=['bin/logsight']
+    entry_points={
+        "console_scripts": [
+            "logsight = logsight_cli.logsight_cli:main",
+        ]
+    }
 )

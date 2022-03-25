@@ -11,11 +11,11 @@ from prettytable import PrettyTable
 
 from logsight.user import LogsightUser
 
-from src.application import application
-from src.log import log
-from src.compare import compare
-from src.incident import incident
-from src.utils import utils
+from logsight_cli.application import application
+from logsight_cli.log import log
+from logsight_cli.compare import compare
+from logsight_cli.incident import incident
+from logsight_cli.utils import utils
 
 
 LOGSIGHT_OPTIONS = ["EMAIL", "PASSWORD", "APP_ID", "DEBUG", "JSON"]
@@ -40,7 +40,7 @@ CONFIG.update(
     }
 )
 
-VERSION = '0.0.13'
+VERSION = '0.0.14'
 
 
 @click.group(help="CLI tool to manage logsight.ai artifacts")
@@ -93,6 +93,10 @@ cli.add_command(log.log)
 cli.add_command(compare.compare)
 cli.add_command(incident.incident)
 cli.add_command(utils.utils)
+
+
+def main():
+    cli(obj={})
 
 
 if __name__ == "__main__":

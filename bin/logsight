@@ -1,2 +1,0 @@
-#!/bin/sh
-./src/logsight_cli.py $@
