@@ -2,8 +2,6 @@ name: CI/CD
 
 on:
   push:
-    branches:
-      - main
     tags:
       - v*
   pull_request:
@@ -149,18 +147,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
 
-      - name: "Get latest tag"
+      - name: Get latest tag
         id: latest_tag
         run: echo "::set-output name=name::$(git tag --sort=-creatordate | head -1)"
-      - name: "Get second latest tag"
-        id: second_latest_tag
-        run: echo "::set-output name=name::$(git tag --sort=-creatordate | head -2 | tail -1)"
-      - name: "Get changelog"
+
+      - name: Read CHANGELOG.rst file
         id: changelog
-        run: echo "::set-output name=changelog::$(echo $(git log --pretty=format:'- %s%n' ${{ steps.second_latest_tag.outputs.name }}..${{ steps.latest_tag.outputs.name }}))"
+        run: echo "::set-output name=changelog::$(cat CHANGELOG.rst)"
 
       - name: Create Release
         id: create_release
@@ -168,7 +162,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          release_name: Release ${{ github.ref }}
+          release_name: Release ${{ steps.latest_tag.name }}
+          tag_name: ${{ steps.latest_tag.name }}
           body: |
             ${{ steps.changelog.outputs.changelog }}
           draft: false
