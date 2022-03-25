@@ -172,8 +172,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          release_name: Release ${{ steps.latest_tag.name }}
           tag_name: ${{ steps.latest_tag.name }}
+          release_name: Release ${{ steps.latest_tag.name }}
           body: |
             ${{ steps.changlog.outputs.content }}
           draft: false
