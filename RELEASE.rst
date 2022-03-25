@@ -18,6 +18,8 @@ Commit messages should be tagged to enable a detailed automated changelog genera
 + 'fix' is for bug fixes
 + 'new' is for new features, big improvement
 
+Tags follow Semantic Versioning (https://semver.org): Major, Minor, Patch.
+
 
 Bash workflow
 -------------
@@ -28,9 +30,6 @@ Bash workflow
     git checkout develop
     git pull --rebase
 
-    #. Created a new release id
-    # Tags follow Semantic Versioning (https://semver.org): Major, Minor, Patch.
-
     # update release version
     prev_version=$(python setup.py --version)
     echo "Previous release: $prev_version"
@@ -40,15 +39,6 @@ Bash workflow
     # Create a branch from the current HEAD (does not touch local changes)
     git checkout -b release/$version develop
 
-    # Warning: Execute the tests manually
-    # tox
-
-    # Update the changelog
-    # add commit message from HEAD to the previous tag
-    # echo -e "$(git log --pretty='- %s' $prev_version..HEAD)\n\n$(cat CHANGELOG.rst)" > CHANGELOG.rst
-    # Run gitchangelog to manually add changelog entries (the following command fails if it is the first release)
-    gitchangelog ^$prev_version HEAD
-
     # Update automatically or manually the version in setup.py and ./logsight_cli/logsight-cli.py
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         sed -i "/^VERSION/s;[^ ]*$;'$version';" setup.py ./logsight_cli/logsight_cli.py
@@ -57,6 +47,9 @@ Bash workflow
     else
         echo "OS is not supported"
     fi
+
+    # Update the changelog
+    gitchangelog ^$prev_version HEAD
 
     git commit -a -m "Preparation for release $version"
 
@@ -72,8 +65,7 @@ Bash workflow
     git checkout develop
     git pull
     git merge --no-ff release/$version -m "Release $version"
-    # This step may well lead to a merge conflict (probably even, since we have changed the version number).
-    # If so, fix it and commit.
+    # Step may well lead to a merge conflict (since we changed version number). If so, fix it and commit.
     git push origin develop
 
     #. Remove release branch
