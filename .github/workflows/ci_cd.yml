@@ -3,7 +3,7 @@ name: Logsight CLI CI-CD
 on:
   push:
     branches:
-      - develop
+      - main
     tags:
       - v*
   pull_request:
