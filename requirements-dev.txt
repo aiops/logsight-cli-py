@@ -9,4 +9,5 @@ pylint                    # GNU General Public License v2 (GPLv2)
 pytest                    # MIT License
 pytest-cov                # MIT License
 gitchangelog              # BSD License (BSD 3-Clause License)
+pystache
 twine                     # Apache Software License
