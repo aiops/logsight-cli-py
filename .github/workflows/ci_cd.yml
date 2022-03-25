@@ -148,12 +148,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Get latest tag
-        id: latest_tag
-        run: |
-          echo "::set-output name=tag::$(git tag --sort=-creatordate | head -1)"
-          echo ${{ steps.latest_tag.output.name }}
-
       - name: Set env tag
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Test env tag
@@ -161,21 +155,14 @@ jobs:
           echo $RELEASE_VERSION
           echo ${{ env.RELEASE_VERSION }}
 
-      - name: Read CHANGELOG.rst
-        id: changelog
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: ./CHANGELOG.rst
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.latest_tag.outputs.tag }}
-          release_name: Release ${{ steps.latest_tag.outputs.tag }}
-          body: |
-            ${{ steps.changelog.outputs.content }}
+          tag_name: ${{ env.RELEASE_VERSION }}
+          release_name: Release ${{ env.RELEASE_VERSION }}
+          body_path: ./CHANGELOG.rst
           draft: false
           prerelease: false
