@@ -152,7 +152,15 @@ jobs:
 
       - name: Get latest tag
         id: latest_tag
-        run: echo "::set-output name=name::$(git tag --sort=-creatordate | head -1)"
+        run: |
+          echo "::set-output name=name::$(git tag --sort=-creatordate | head -1)"
+          echo ${{ steps.latest_tag.name }}
+
+      - name: Read CHANGELOG.rst
+        id: changlog
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./CHANGELOG.rst
 
       - name: Read CHANGELOG.rst file
         id: changelog
@@ -167,6 +175,6 @@ jobs:
           release_name: Release ${{ steps.latest_tag.name }}
           tag_name: ${{ steps.latest_tag.name }}
           body: |
-            ${{ steps.changelog.outputs.changelog }}
+            ${{ steps.changlog.outputs.content }}
           draft: false
           prerelease: false
