@@ -1,7 +1,7 @@
 README
 ******
 
-.. image:: https://github.com/aiops/logsight-cli-py/actions/workflows/ci_cd.yml/badge.svg
+.. image:: https://github.com/aiops/logsight-cli-py/actions/workflows/ci_cd/badge.svg
     :target: https://github.com/aiops/logsight-cli-py/actions/workflows/ci_cd.yml
     :alt: CI/CD
 
@@ -107,9 +107,12 @@ The installation has been tested with Mac and Linux operating systems.
 
 Prerequisite
 ============
-You have a `Logsight.ai`_ account with `EMAIL` and `PASSWORD`.
+
++ You have a `Logsight.ai`_ account with `EMAIL` and `PASSWORD`
++ You have installed `Python`_ version >=3.8
 
 .. __: https://logsight.ai/
+.. _python: https://www.python.org/downloads/
 
 
 Install package
@@ -127,7 +130,7 @@ To verify your CLI installation, use the logsight --version command:
 .. code-block:: console
 
     $ logsight --version
-    logsight/0.0.12
+    logsight/0.0.28
 
 The output looks like logsight/x.y.z.
 If you don't see that output, and installed the Logsight CLI, check if you have an old logsight package on your system.
