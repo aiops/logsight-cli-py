@@ -35,7 +35,8 @@ Bash workflow
     prev_version=$(python setup.py --version)
     echo "Previous release: $prev_version"
     version=$(echo $prev_version | perl -pe 's/^((\d+\.)*)(\d+)(.*)$/$1.($3+1).$4/e')
-    echo "New release: $version"
+    echo "New release:     version=$(echo $prev_version | perl -pe 's/^((\d+\.)*)(\d+)(.*)$/$1.($3+1).$4/e')
+    echo "New release: $version""
 
     # Create a branch from the current HEAD (does not touch local changes)
     git checkout -b release/$version develop
