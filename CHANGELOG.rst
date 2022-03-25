@@ -1,3 +1,13 @@
+0.0.14 (2022-03-25)
+-------------------
+
+Changes
+~~~~~~~
+- New CI/CD. [Jorge Cardoso]
+- Clean requirements. [Jorge Cardoso]
+- Corrected changelog. [Jorge Cardoso]
+
+
 0.0.13 (2022-03-20)
 ------------
 Changes
