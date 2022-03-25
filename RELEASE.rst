@@ -49,11 +49,11 @@ Bash workflow
     # Run gitchangelog to manually add changelog entries (the following command fails if it is the first release)
     gitchangelog ^$prev_version HEAD
 
-    # Update automatically or manually the version in setup.py and ./src/logsight-cli.py
+    # Update automatically or manually the version in setup.py and ./logsight_cli/logsight-cli.py
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        sed -i "/^VERSION/s;[^ ]*$;'$version';" setup.py ./src/logsight_cli.py
+        sed -i "/^VERSION/s;[^ ]*$;'$version';" setup.py ./logsight_cli/logsight_cli.py
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i "" "/^VERSION/s;[^ ]*$;'$version';" setup.py ./src/logsight_cli.py
+        sed -i "" "/^VERSION/s;[^ ]*$;'$version';" setup.py ./logsight_cli/logsight_cli.py
     else
         echo "OS is not supported"
     fi
