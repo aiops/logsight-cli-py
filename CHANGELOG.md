@@ -1,10 +1,6 @@
 # Changelog
 
-## (unreleased)
-
-### Other
-
-* Release 0.0.39. [Jorge Cardoso]
+* Added build for windows, linux, and macos. [Jorge Cardoso]
 * PyPi is not able to read package images. External links are needed. [Jorge Cardoso]
 
 
