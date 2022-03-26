@@ -8,7 +8,7 @@ function mbe() {
     sed 's/```bash//g' | #  remove the ```bash
     sed 's/```//g' | # remove the trailing ```
     sed '/^$/d' | # remove empty lines
-    /usr/bin/env bash ; # execute the command
+    /usr/bin/env bash -x ; # execute the command
   else
     echo "${1} is not valid" ;
   fi
