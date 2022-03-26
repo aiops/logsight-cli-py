@@ -32,10 +32,12 @@ function git_cmd_unsuccessful {
     exit 1  
 } 
 function pause_for_changelog {
+    set +o xtrace
     YELLOW='\033[0;33m' 
     echo -e "${YELLOW}Update manually the CHANGLOG.md file."
     echo "Press [Enter] key when done..."
     read
+    set -o xtrace
 } 
 set -e
 trap 'git_cmd_unsuccessful' ERR
