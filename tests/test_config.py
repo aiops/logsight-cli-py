@@ -3,7 +3,7 @@ from click.testing import CliRunner
 from logsight_cli.logsight_cli import cli
 
 
-AUTH = ['--email', 'jorge.cardoso.pt@gmail.com', '--password', 'pijgu8-jeCjuw-segtes']
+AUTH = ['--email', 'jorge.cardoso.pt@gmail.com', '--password', 'xymneq-jasqA9-faxtyz']
 
 
 def test_config():
