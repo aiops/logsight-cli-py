@@ -9,7 +9,7 @@ function mbe() {
     sed 's/```//g' | # remove the trailing ```
     # sed '/^$/d' > "out.sh" # remove empty lines
     sed '/^$/d' | # remove empty lines
-    /usr/bin/env bash ; # execute the command
+    /usr/bin/env bash -x ; # execute the command
   else
     echo "${1} is not valid" ;
   fi

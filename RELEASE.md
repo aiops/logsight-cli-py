@@ -21,15 +21,17 @@ Bash workflow
 -------------
 
 ```bash
+set -o xtrace
 function git_cmd_successful {
     RED='\033[0;31m'
-    echo "Status of git: $1"
     if [ $1 -ne 0 ]; then
         echo -e "${RED}The merge failed. Manually fix the code."
         read -p "Press [Enter] key to exit..."
         exit 1  
     fi
 } 
+set -e
+trap 'git_cmd_successful' ERR
 
 #. Update your local develop branch in case someone made changes to the remote develop branch
 git checkout develop
