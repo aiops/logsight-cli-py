@@ -1,8 +1,8 @@
 README
 ******
 
-.. image:: https://github.com/aiops/logsight-cli-py/actions/workflows/ci_cd.yml/badge.svg
-    :target: https://github.com/aiops/logsight-cli-py/actions/workflows/ci_cd.yml
+.. image:: https://github.com/aiops/logsight-cli-py/actions/workflows/cicd.yml/badge.svg
+    :target: https://github.com/aiops/logsight-cli-py/actions/workflows/cicd.yml
     :alt: CI/CD
 
 .. image:: https://img.shields.io/pypi/v/logsight-cli-py
