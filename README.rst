@@ -111,6 +111,11 @@ Prerequisite
 + You have a `Logsight.ai`_ account with `EMAIL` and `PASSWORD`
 + You have installed `Python`_ version >=3.8
 
+.. code-block:: console
+
+    $ python --version
+    Python 3.8.10
+
 .. __: https://logsight.ai/
 .. _python: https://www.python.org/downloads/
 
