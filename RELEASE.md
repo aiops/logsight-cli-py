@@ -25,7 +25,9 @@ set -o xtrace
 function git_cmd_unsuccessful {
     set +o xtrace
     RED='\033[0;31m'
-    echo -e "${RED}The merge failed. Manually fix the code."
+    echo -e "${RED}The git command failed. You need to manually fix the problem."
+    echo -e "${RED}Check commands already executed and execute the remaining commands manually."
+    echo -e "${RED}You probably will need to: $ version=<current version> ."
     read -p "Press [Enter] key to exit..."
     exit 1  
 } 
@@ -79,7 +81,7 @@ git push origin develop
 #. Remove release branch
 git branch -D release/$version
 
-exit(0)
+exit 0
 # Warning: The following commands are implemented using Github actions
 # They should not be executed manually
 
