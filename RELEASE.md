@@ -62,6 +62,7 @@ git commit -a -m "Preparation for release $version"
 #. Update main branch
 git checkout main
 git pull
+git merge --no-ff release/$version -m "Release $version"
 git_cmd_successful $?
 git merge --no-ff release/$version -m "Release $version"
 git_cmd_successful $?
@@ -74,6 +75,7 @@ git_cmd_successful $?
 #. Update develop branch
 git checkout develop
 git pull
+git merge --no-ff release/$version -m "Release $version"
 git_cmd_successful $?
 git merge --no-ff release/$version -m "Release $version"
 git_cmd_successful $?
