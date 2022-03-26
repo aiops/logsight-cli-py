@@ -31,6 +31,12 @@ function git_cmd_unsuccessful {
     read -p "Press [Enter] key to exit..."
     exit 1  
 } 
+function pause_for_changelog {
+    YELLOW='\033[0;33m' 
+    echo -e "${YELLOW}Update manually the CHANGLOG.md file."
+    echo "Press [Enter] key when done..."
+    read
+} 
 set -e
 trap 'git_cmd_unsuccessful' ERR
 
@@ -58,9 +64,7 @@ fi
 
 # Update the changelog
 gitchangelog ^$prev_version HEAD
-YELLOW='\033[0;33m' 
-echo -e "${YELLOW}Update manually the CHANGLOG.md file."
-read -p "Press [Enter] key when done..."
+pause_for_changelog
     
 git commit -a -m "Preparation for release $version"
 
@@ -96,4 +100,5 @@ python3 -m pip uninstall logsight-cli-py
 
 twine upload dist/*
 python3 -m pip install logsight-cli-py
+}
 ```
