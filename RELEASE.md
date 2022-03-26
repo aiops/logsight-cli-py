@@ -22,7 +22,7 @@ Bash workflow
 
 ```bash
 
-function merge_successful {
+function git_cmd_successful {
     echo "Status of git merge: $1"
     if [ $1 -ne 0 ]; then
         echo "The merge failed. Manually fix the code, and commit."
@@ -33,6 +33,7 @@ function merge_successful {
 #. Update your local develop branch in case someone made changes to the remote develop branch
 git checkout develop
 git pull --rebase
+git_cmd_successful $?
 
 # update release version
 prev_version=$(python setup.py --version)
@@ -60,18 +61,24 @@ git commit -a -m "Preparation for release $version"
 #. Update main branch
 git checkout main
 git pull
+git_cmd_successful $?
+
 git merge --no-ff release/$version -m "Release $version"
-merge_successful($?)
+git_cmd_successful $?
 
 git tag -a $version -m "Release $version"
 git push --atomic --tags
 git push origin main
+git_cmd_successful $?
 
 #. Update develop branch
 git checkout develop
 git pull
+git_cmd_successful $?
+
 git merge --no-ff release/$version -m "Release $version"
-merge_successful($?)
+git_cmd_successful $?
+
 git push origin develop
 
 #. Remove release branch
