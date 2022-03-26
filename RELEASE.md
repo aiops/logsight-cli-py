@@ -56,7 +56,10 @@ fi
 
 # Update the changelog
 gitchangelog ^$prev_version HEAD
-
+YELLOW='\033[0;33m' 
+echo -e "${YELLOW}Update manually the CHANGLOG.md file."
+read -p "Press [Enter] key when done..."
+    
 git commit -a -m "Preparation for release $version"
 
 #. Update main branch
@@ -76,9 +79,9 @@ git push origin develop
 #. Remove release branch
 git branch -D release/$version
 
+exit(0)
 # Warning: The following commands are implemented using Github actions
 # They should not be executed manually
-exit(0)
 
 rm -rf build
 rm -rf dist
