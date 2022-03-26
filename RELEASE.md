@@ -36,8 +36,8 @@ function pause_for_changelog {
     NOCOLOR='\033[0m'
     YELLOW='\033[0;33m' 
     echo -e "${YELLOW}Update manually the CHANGLOG.md file."
-    echo "Press [Enter] key when done...${NOCOLOR}"
-    read </dev/tty
+    echo -e "Press [Enter] key when done...${NOCOLOR}"
+    read < /dev/tty
     set -o xtrace
 } 
 set -e
