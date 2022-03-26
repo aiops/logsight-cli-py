@@ -21,11 +21,12 @@ Bash workflow
 -------------
 
 ```bash
-
 function git_cmd_successful {
-    echo "Status of git merge: $1"
+    RED='\033[0;31m'
+    echo "Status of git: $1"
     if [ $1 -ne 0 ]; then
-        echo "The merge failed. Manually fix the code, and commit."
+        echo -e "${RED}The merge failed. Manually fix the code."
+        read -p "Press [Enter] key to exit..."
         exit 1  
     fi
 } 
@@ -62,12 +63,11 @@ git commit -a -m "Preparation for release $version"
 git checkout main
 git pull
 git_cmd_successful $?
-
 git merge --no-ff release/$version -m "Release $version"
 git_cmd_successful $?
-
 git tag -a $version -m "Release $version"
 git push --atomic --tags
+git_cmd_successful $?
 git push origin main
 git_cmd_successful $?
 
@@ -75,11 +75,10 @@ git_cmd_successful $?
 git checkout develop
 git pull
 git_cmd_successful $?
-
 git merge --no-ff release/$version -m "Release $version"
 git_cmd_successful $?
-
 git push origin develop
+git_cmd_successful $?
 
 #. Remove release branch
 git branch -D release/$version
