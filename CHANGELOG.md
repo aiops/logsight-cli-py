@@ -2,8 +2,9 @@
 
 ## (unreleased)
 
-### Fix
+### Other
 
+* Release 0.0.39. [Jorge Cardoso]
 * PyPi is not able to read package images. External links are needed. [Jorge Cardoso]
 
 
