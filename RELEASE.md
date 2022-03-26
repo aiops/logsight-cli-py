@@ -22,21 +22,19 @@ Bash workflow
 
 ```bash
 set -o xtrace
-function git_cmd_successful {
+function git_cmd_unsuccessful {
+    set +o xtrace
     RED='\033[0;31m'
-    if [ $1 -ne 0 ]; then
-        echo -e "${RED}The merge failed. Manually fix the code."
-        read -p "Press [Enter] key to exit..."
-        exit 1  
-    fi
+    echo -e "${RED}The merge failed. Manually fix the code."
+    read -p "Press [Enter] key to exit..."
+    exit 1  
 } 
 set -e
-trap 'git_cmd_successful' ERR
+trap 'git_cmd_unsuccessful' ERR
 
 #. Update your local develop branch in case someone made changes to the remote develop branch
 git checkout develop
-git pull --rebase
-git_cmd_successful $?
+git pull
 
 # update release version
 prev_version=$(python setup.py --version)
@@ -65,24 +63,15 @@ git commit -a -m "Preparation for release $version"
 git checkout main
 git pull
 git merge --no-ff release/$version -m "Release $version"
-git_cmd_successful $?
-git merge --no-ff release/$version -m "Release $version"
-git_cmd_successful $?
 git tag -a $version -m "Release $version"
 git push --atomic --tags
-git_cmd_successful $?
 git push origin main
-git_cmd_successful $?
 
 #. Update develop branch
 git checkout develop
 git pull
 git merge --no-ff release/$version -m "Release $version"
-git_cmd_successful $?
-git merge --no-ff release/$version -m "Release $version"
-git_cmd_successful $?
 git push origin develop
-git_cmd_successful $?
 
 #. Remove release branch
 git branch -D release/$version
