@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  linting-and-docs:
+  code-analysis:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -42,7 +42,7 @@ jobs:
             echo "No docs to build yet"
 
   build:
-    needs: linting-and-docs
+    needs: code-analysis
     runs-on: '${{ matrix.os }}'
     strategy:
       matrix:
@@ -75,7 +75,7 @@ jobs:
         run: |
           pytest tests -r a
 
-  test-install:
+  test-environment:
     needs: build
     runs-on: '${{ matrix.os }}'
     strategy:
@@ -91,7 +91,7 @@ jobs:
           python-version: '${{ matrix.python-version }}'
       - name: 'Install (${{ runner.os }})'
         if: >-
-          startsWith(runner.os, 'Windows') && endsWith(matrix.python-version,'3.6')
+          startsWith(runner.os, 'Windows') && endsWith(matrix.python-version,'3.8')
         run: |
           pip install --upgrade --user pip wheel
       - name: 'Install (${{ runner.os }})'
@@ -102,9 +102,9 @@ jobs:
         run: |
           logsight --version
 
-  publish:
+  publish-pypi:
     name: Publish to PyPI and TestPyPI
-    needs: [test-install]
+    needs: [test-environment]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -140,9 +140,9 @@ jobs:
           user: __token__
           password: '${{ secrets.LOGSIGHT_CLI_PYPI_TOKEN }}'
 
-  release:
-    name: Release to GitHub
-    needs: [test-install]
+  publish-github:
+    name: Publish to GitHub
+    needs: [test-environment]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
