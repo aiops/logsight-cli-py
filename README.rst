@@ -60,17 +60,23 @@ Description
 + logsight.ai returns back a report with various metrics and a deployment risk score
 + Since the risk score is high, you reject the deployment of the new application
 
+
 .. figure:: https://raw.githubusercontent.com/aiops/logsight-cli-py/main/img/use_case.png
     :width: 400
     :align: center
     :alt: Use Case for Logsight CLI
 
 
-
 For the impatient
 ==================
 
 Once you have an account with `Logsight.ai`__, you can execute our `Hello World`.
+
+.. figure:: https://raw.githubusercontent.com/aiops/logsight-cli-py/main/img/cli_macos.png
+    :width: 400
+    :align: center
+    :alt: Use Case for Logsight CLI
+
 
 .. code-block:: console
 
