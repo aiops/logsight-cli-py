@@ -18,6 +18,13 @@ from logsight_cli.incident import incident
 from logsight_cli.utils import utils
 
 
+PYTHON_VERSION_MIN = (3, 8, 0)
+if not sys.version_info >= PYTHON_VERSION_MIN:
+    raise EnvironmentError(
+        "Python version too low, required >= {}"
+            .format('.'.join(str(n) for n in PYTHON_VERSION_MIN)))
+
+
 LOGSIGHT_OPTIONS = ["EMAIL", "PASSWORD", "APP_ID", "DEBUG", "JSON"]
 CONFIG = dict.fromkeys(LOGSIGHT_OPTIONS, (None, None))
 
@@ -40,7 +47,7 @@ CONFIG.update(
     }
 )
 
-VERSION = '0.0.41'
+VERSION = '0.0.42'
 
 
 @click.group(help="CLI tool to manage logsight.ai artifacts")

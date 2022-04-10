@@ -1,12 +1,8 @@
 Release workflow
 ================
 
-Releases logsight CLI for Python to the following external systems:
-
--   [GitHub](https://github.com/aiops/logsight-cli-py)
--   [Test PyPI](https://test.pypi.org/search/?q=%22logsight-cli-py%22&o=) and
-    [PyPI](https://pypi.org/search/?q=%22logsight-cli-py%22&o=)
-
+Commit Messages
+---------------
 Commit messages should be tagged to enable a detailed automated
 changelog generation:
 
@@ -16,6 +12,36 @@ changelog generation:
 
 Tags follow Semantic Versioning (<https://semver.org>): Major, Minor,
 Patch.
+
+Branch Strategy
+---------------
+We have two branches: `main` and `develop`.
+The `main` branch contains the latest version which can be installed by users.
+It is always behind `develop`, until it is merged before a major release.
+
+Release Locations
+-----------------
+Releases logsight CLI for Python to the following external systems:
+
+- [GitHub](https://github.com/aiops/logsight-cli-py)
+- [Test PyPI](https://test.pypi.org/search/?q=%22logsight-cli-py%22&o=) and
+    [PyPI](https://pypi.org/search/?q=%22logsight-cli-py%22&o=)
+
+How to release
+--------------
+We use executable Markdown to execute this RELEASE.md file.
+The bash script code below can be executed by running the following command:
++ $ release.sh RELEASE.md
+
+CI/CD workflow
+---------------
+Once the previous step is executed and the code is pushed to GitHub, the git action `.github/workflows/cicd.yaml` runs.
+The workflow will execute a pipeline of 4 steps:
++ code-analysis
++ build
++ test-environment
++ publish-pypi and publish-github
+
 
 Bash workflow
 -------------
