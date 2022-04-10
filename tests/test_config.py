@@ -22,3 +22,4 @@ def test_application():
 
 if __name__ == '__main__':
     test_config()
+    test_application()
