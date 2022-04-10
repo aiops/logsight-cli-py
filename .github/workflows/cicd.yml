@@ -33,9 +33,7 @@ jobs:
 
       - name: Formatting and linters
         run: |
-          flake8 logsight_cli tests setup.py --count --select=E9,F63,F7,F82 --show-source --statistics \
-                 --exit-zero --max-complexity=10 --max-line-length=80
-          pylint logsight_cli tests setup.py --disable=C0103,C0114,C0116,W0105,W0511,W0613,R0913,R0914,R0801,E1120,E1123,E1136
+          tox -e lint
 
       - name: Build docs
         run: |
