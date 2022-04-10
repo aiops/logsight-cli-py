@@ -62,7 +62,7 @@ Description
 
 
 .. figure:: https://raw.githubusercontent.com/aiops/logsight-cli-py/main/img/use_case.png
-    :width: 400
+    :width: 700
     :align: center
     :alt: Use Case for Logsight CLI
 
