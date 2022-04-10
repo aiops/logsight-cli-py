@@ -62,7 +62,7 @@ Description
 
 
 .. figure:: https://raw.githubusercontent.com/aiops/logsight-cli-py/main/img/use_case.png
-    :width: 700
+    :width: 600
     :align: center
     :alt: Use Case for Logsight CLI
 
@@ -77,6 +77,9 @@ Once you have an account with `Logsight.ai`__, you can execute our `Hello World`
     :align: center
     :alt: Use Case for Logsight CLI
 
+The risk of deployment is 23%. Thus, it is safe to deploy version v2 of the application.
+
+To replicate the previous execution in your environment, you can use the following code:
 
 .. code-block:: console
 
@@ -102,7 +105,7 @@ Once you have an account with `Logsight.ai`__, you can execute our `Hello World`
     ...
     +---------------------------------+--------------------------------------+
 
-The risk of deployment is 23%. Thus, it is safe to deploy version v2 of the application.
+
 
 
 Installation
