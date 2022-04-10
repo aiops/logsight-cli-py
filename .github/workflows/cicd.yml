@@ -31,6 +31,13 @@ jobs:
           update-setuptools: "false"
           update-wheel: "false"
 
+      - name: Run log quality
+        uses: aiops/check-log-quality-action@main
+
+      - name: Check log quality score
+        run: |
+          echo "Job status= ${{ job.status }}."
+
       - name: Formatting and linters
         run: |
           tox -e lint
