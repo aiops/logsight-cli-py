@@ -73,7 +73,7 @@ For the impatient
 Once you have an account with `Logsight.ai`__, you can execute our `Hello World`.
 
 .. figure:: https://raw.githubusercontent.com/aiops/logsight-cli-py/main/img/cli_macos.png
-    :width: 400
+    :width: 900
     :align: center
     :alt: Use Case for Logsight CLI
 
