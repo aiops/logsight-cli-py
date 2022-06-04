@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+__version__ = '0.0.48'
 
 import sys
 import os
@@ -9,6 +10,7 @@ import json as js
 import click
 from prettytable import PrettyTable
 
+import logsight.config
 from logsight.user import LogsightUser
 
 from logsight_cli.application import application
@@ -24,7 +26,7 @@ if not sys.version_info >= PYTHON_VERSION_MIN:
         f'Python version too low, required >= {".".join(str(n) for n in PYTHON_VERSION_MIN)}')
 
 
-LOGSIGHT_OPTIONS = ["EMAIL", "PASSWORD", "APP_ID", "DEBUG", "JSON"]
+LOGSIGHT_OPTIONS = ["HOST_API", "EMAIL", "PASSWORD", "APP_ID", "DEBUG", "JSON"]
 CONFIG = dict.fromkeys(LOGSIGHT_OPTIONS, (None, None))
 
 CONFIG_FILE = os.path.join(str(Path.home()), ".logsight")
@@ -46,18 +48,17 @@ CONFIG.update(
     }
 )
 
-VERSION = '0.0.48'
-
 
 @click.group(help="CLI tool to manage logsight.ai artifacts")
-@click.version_option(VERSION, prog_name="Logsight CLI")
+@click.version_option(__version__, prog_name="Logsight CLI")
 @click.pass_context
 @click.option("--debug/--no-debug")
+@click.option("--host_api", help="Logsight host API.")
 @click.option("--email", help="User e-mail.")
 @click.option("--password", help="User password.")
 @click.option("--json", help="Output as JSON.", is_flag=True)
 @click.option("--app_id", help="Default app ID.")
-def cli(ctx, debug, json, email, password, app_id):
+def cli(ctx, debug, json, host_api, email, password, app_id):
 
     for k in LOGSIGHT_OPTIONS:
         if locals().get(k.lower()):
@@ -67,6 +68,9 @@ def cli(ctx, debug, json, email, password, app_id):
         ctx.obj[k] = CONFIG[k][0]
         if k in ['DEBUG', 'JSON'] and ctx.obj[k] is not None:
             ctx.obj[k] = js.loads(ctx.obj[k].lower())
+
+    if ctx.obj['HOST_API']:
+        logsight.config.set_host(ctx.obj['HOST_API'])
 
     ctx.obj["USER"] = LogsightUser(email=ctx.obj["EMAIL"],
                                    password=ctx.obj["PASSWORD"])
