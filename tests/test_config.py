@@ -13,13 +13,6 @@ def test_config():
     assert 'EMAIL' in result.output
 
 
-def test_application():
-    runner = CliRunner()
-    result = runner.invoke(cli, AUTH + ['application', 'ls'], obj={})
-    assert result.exit_code == 0
-    assert 'APPLICATION' in result.output
-
-
 if __name__ == '__main__':
     test_config()
-    test_application()
+

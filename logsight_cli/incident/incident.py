@@ -39,7 +39,7 @@ def log(ctx, app_id, tag, flush_id):
         f"A default 365d window in being applied"
     )
 
-    u = ctx.obj["USER"]
+    u = ctx.obj['AUTHENTICATION']
     a = app_id or ctx.obj["APP_ID"]
 
     i = LogsightIncident(u.user_id, u.token)

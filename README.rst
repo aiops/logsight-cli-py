@@ -32,8 +32,6 @@ Commands available include:
 +----------------+-------------------------------------------------------------+
 | Object         | Description                                                 |
 +================+=============================================================+
-| Applications   | Create and delete applications                              |
-+----------------+-------------------------------------------------------------+
 | Users          | Register, activate and delete users (not yet available)     |
 +                +-------------------------------------------------------------+
 |                | Change and reset password (not yet available)               |
@@ -82,6 +80,8 @@ The risk of deployment is 23%. Thus, it is safe to deploy version v2 of the appl
 To replicate the previous execution in your environment, you can use the following code:
 
 .. code-block:: console
+
+
 
     $ logsight application create --name hadoop_name_node
     app_id: a3de4ae5-a0be-42c5-a6d9-9e9c245831f5
@@ -154,26 +154,25 @@ Uninstall it with these instructions `uninstallation`_.
 Configuring Logsight CLI
 ========================
 There are several methods you can use to configure the settings that the Logsight CLI uses when interacting with Logsight.ai service,
-i.e. Logsight URL and account API keys. Account API keys can be created in API.
+i.e. Logsight URL and account keys. Account keys can be created in API.
 
 There is a specific load order for what will be used.
 
 Using Logsight Config
 ======================
 You can create a `.logsight` config file to set up your configuration with Logsight server.
-The file should be placed in your home directory and contains variables such `EMAIL`, `PASSWORD`, `APP_ID`, etc.
+The file should be placed in your home directory and contains variables such `EMAIL`, `PASSWORD`, etc.
 
 .. code-block:: console
 
     $ cat ~/.logsight
     [DEFAULT]
+    HOST_API = https://demo.logsight.ai/api/v1/
     EMAIL = john.miller@zmail.com
-    PASSWORD = sawhUz-hanpe4-zaqtyr
+    PASSWORD = owfU5-fyfden-fefzib
     APP_ID = 14082ca2-3e35-4a76-a37c-0d1a48931a19
     DEBUG = False
     JSON = False
-
-Setting the variable APP_ID with a default value is useful if you frequently use the same application and want to avoid passing the Id as a parameter for each command invoked.
 
 
 Using Environment Variables
@@ -183,9 +182,9 @@ Environment variables take precedence over config variables.
 
 .. code-block:: console
 
+    $ export LOGSIGHT_HOST_API="https://demo.logsight.ai/api/v1/"
     $ export LOGSIGHT_EMAIL=john.miller@zmail.com
-    $ export LOGSIGHT_PASSWORD=sawhUz-hanpe4-zaqtyr
-    $ export LOGSIGHT_APP_ID=07402355-e74e-4115-b21d-4cbf453490d1
+    $ export LOGSIGHT_PASSWORD=mowfU5-fyfden-fefzib
     $ export LOGSIGHT_DEBUG=False
     $ export LOGSIGHT_JSON=False
 
@@ -204,7 +203,8 @@ you can pass the same values as options as part of any logsight command.
 
 .. code-block:: console
 
-    $ logsight --email john.miller@zmail.com --password sawhUz-hanpe4-zaqtyr applications ls
+    $ logsight --email john.miller@zmail.com --password mowfU5-fyfden-fefzib applications ls
+    $ TO BE CHANGED. APPLICATION LS DOES NOT EXIST ANYMORE
 
 
 Examples
@@ -218,26 +218,12 @@ The following list provides examples of useful commands:
     +----------+--------------------------------------+---------------------------+
     | OPTION   | VALUE                                | SOURCE                    |
     +----------+--------------------------------------+---------------------------+
-    | EMAIL    | john.miller@gmail.com                | Environment               |
-    | PASSWORD | sawhUz-hanpe4-zaqtyr                 | Environment               |
-    | APP_ID   | 14082ca2-3e35-4a76-a37c-0d1a48931a19 | /Users/jmiller/.logsight  |
+    | HOST_API | https://demo.logsight.ai/api/v1/     | /Users/jmiller/.logsight  |
+    | EMAIL    | john.miller@zmail.com                | Environment               |
+    | PASSWORD | mowfU5-fyfden-fefzib                 | Environment               |
     | DEBUG    | True                                 | /Users/jmiller/.logsight  |
     | JSON     | False                                | /Users/jmiller/.logsight  |
     +----------+--------------------------------------+---------------------------+
-
-    $ logsight application ls
-    +--------------------------------------+------------------+
-    | APPLICATION ID                       | NAME             |
-    +--------------------------------------+------------------+
-    | 7bc44909-a132-40e0-a4e7-1e3caf5b7f45 | hdfs_node        |
-    | cb92e882-fd26-41c4-80f0-ff56a8722b8c | node_manager     |
-    | 71538838-0296-40fa-8bbc-d91e112a2aab | resource_manager |
-    | 83a16a6f-6328-4ef9-b4cc-6afe31f70a91 | name_node        |
-    +--------------------------------------+------------------+
-
-    $ logsight application create --name <app name>
-    $ logsight application delete --app_id <app id>
-    $ logsight application rename --name <app name> --app_id <app id> [Under development]
 
     $ logsight log upload <file> --tag v1 --app_id <app id>
     $ logsight log tag ls --app_id <app id> [Under development]

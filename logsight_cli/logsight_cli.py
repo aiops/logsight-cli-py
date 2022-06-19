@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-__version__ = '0.0.48'
 
 import sys
 import os
@@ -11,7 +10,7 @@ import click
 from prettytable import PrettyTable
 
 import logsight.config
-from logsight.user import LogsightUser
+from logsight.authentication import LogsightAuthentication
 
 from logsight_cli.application import application
 from logsight_cli.log import log
@@ -48,9 +47,11 @@ CONFIG.update(
     }
 )
 
+VERSION = '0.0.48'
+
 
 @click.group(help="CLI tool to manage logsight.ai artifacts")
-@click.version_option(__version__, prog_name="Logsight CLI")
+@click.version_option(VERSION, prog_name="Logsight CLI")
 @click.pass_context
 @click.option("--debug/--no-debug")
 @click.option("--host_api", help="Logsight host API.")
@@ -72,10 +73,10 @@ def cli(ctx, debug, json, host_api, email, password, app_id):
     if ctx.obj['HOST_API']:
         logsight.config.set_host(ctx.obj['HOST_API'])
 
-    ctx.obj["USER"] = LogsightUser(email=ctx.obj["EMAIL"],
-                                   password=ctx.obj["PASSWORD"])
+    ctx.obj['AUTHENTICATION'] = LogsightAuthentication(email=ctx.obj['EMAIL'],
+                                                       password=ctx.obj['PASSWORD'])
 
-    if not ctx.obj["EMAIL"] or not ctx.obj["PASSWORD"]:
+    if not ctx.obj['EMAIL'] or not ctx.obj['PASSWORD']:
         click.echo('Authentication incomplete')
         echo_config()
         sys.exit(1)
@@ -98,7 +99,6 @@ def echo_config():
     click.echo(table)
 
 
-cli.add_command(application.apps)
 cli.add_command(log.log)
 cli.add_command(compare.compare)
 cli.add_command(incident.incident)

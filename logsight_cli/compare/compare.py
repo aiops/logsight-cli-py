@@ -31,7 +31,7 @@ def log(ctx, app_id, tags, flush_id):
     python -m src.logsight_cli compare log \
     --app_id <applicationId> --tags <tag_v1> <tag_v2> --flush_id <flushId>
     """
-    u = ctx.obj["USER"]
+    u = ctx.obj['AUTHENTICATION']
     a = app_id or ctx.obj["APP_ID"]
 
     comp = LogsightCompare(u.user_id, u.token)

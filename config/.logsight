@@ -1,7 +1,7 @@
 [DEFAULT]
-HOST_API = https://logsight.ai/api/v1/
-EMAIL = john.miller@zmail.comtox
-PASSWORD = xymneq-jasqA9-faxtyz
+HOST_API = https://demo.logsight.ai/api/v1/
+EMAIL = logsight.testing.001@gmail.com
+PASSWORD = owfU5-fyfden-fefzib
 APP_ID = 14082ca2-3e35-4a76-a37c-0d1a48931a19
 DEBUG = False
 JSON = False
