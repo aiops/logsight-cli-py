@@ -6,7 +6,7 @@ import click
 from tqdm import tqdm
 from prettytable import PrettyTable
 
-from logsight.incidents import LogsightIncident
+from logsight.incidents import LogsightIncidents
 from logsight.exceptions import Conflict
 
 N_CALL_RETRIES = 10
